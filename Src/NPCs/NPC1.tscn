@@ -1,0 +1,115 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Assets/Sprites/NPC/3 Cyborg/Cyborg_idle.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/NPC/3 Cyborg/Cyborg_run.png" type="Texture" id=2]
+[ext_resource path="res://Src/NPCs/NPC1.gd" type="Script" id=3]
+[ext_resource path="res://Src/Utils/FiniteStateMachine.gd" type="Script" id=4]
+[ext_resource path="res://Src/NPCs/Types/Customer.gd" type="Script" id=5]
+[ext_resource path="res://Src/NPCs/Types/Passby.gd" type="Script" id=6]
+[ext_resource path="res://Src/NPCs/State/Move.gd" type="Script" id=7]
+[ext_resource path="res://Src/NPCs/State/Idle.gd" type="Script" id=8]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 192, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 240, 0, 48, 48 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=12]
+radius = 16.3653
+height = 49.4061
+
+[node name="NPC" type="Area2D" groups=[
+"NPC",
+]]
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 3, 3 )
+frames = SubResource( 5 )
+animation = "walk"
+playing = true
+offset = Vector2( 10, -5 )
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource( 12 )
+
+[node name="Role" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="Customer" type="Node" parent="Role"]
+script = ExtResource( 5 )
+
+[node name="Move" type="Node" parent="Role/Customer"]
+script = ExtResource( 7 )
+
+[node name="Idle" type="Node" parent="Role/Customer"]
+script = ExtResource( 8 )
+
+[node name="Passby" type="Node" parent="Role"]
+script = ExtResource( 6 )
+
+[node name="Move" type="Node" parent="Role/Passby"]
+script = ExtResource( 7 )
+
+[node name="Raycast" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 100, 0 )
+collide_with_areas = true
