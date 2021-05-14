@@ -10,8 +10,15 @@ var fsm
 var active_shops
 var action_done = false
 
+var randr_dist_to_shop : float = 0
+var rand_y : int = 0
+var random = RandomNumberGenerator.new()
+
 func enter():
+	random.randomize()
+	rand_y = random.randi_range(0, 25)
 	character = get_parent().get_parent()
+	character.global_position.y += rand_y
 	active_shops = GameReducer.get_active_shop()
 	state = get_child(0)
 	_enter_state()
@@ -48,7 +55,8 @@ func queue_check() -> void:
 		change_to("Move")
 
 func check_game_shop() -> void:
-	if not action_done and character.global_position.distance_to(active_shops.global_position) < 90:
+	randr_dist_to_shop = random.randf_range(90 + rand_y, 150)
+	if not action_done and character.global_position.distance_to(active_shops.global_position) < randr_dist_to_shop:
 		change_to("Idle")
 		yield(get_tree().create_timer(3.0),"timeout")
 		action_done = true
@@ -56,7 +64,7 @@ func check_game_shop() -> void:
 		
 
 func process(delta):
-	queue_check()
+#	queue_check()
 	check_game_shop()
 	if state.has_method("process"):
 		state.process(delta)

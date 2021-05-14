@@ -9,4 +9,7 @@ func _ready():
 	$Timer.start()
 
 func _on_Timer_timeout():
+	npc_spawn()
+
+func npc_spawn() -> void:
 	get_parent().add_child(npc_scene.instance())

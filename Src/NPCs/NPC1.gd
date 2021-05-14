@@ -28,12 +28,12 @@ func _ready():
 		init_direction = directions.right
 		global_position = init_positions.left
 		$AnimatedSprite.scale.x *= init_direction.x
-		$Raycast.cast_to.x *= init_direction.x
+#		$Raycast.cast_to.x *= init_direction.x
 	else:
 		init_direction = directions.left
 		global_position = init_positions.right
 		$AnimatedSprite.scale.x *= init_direction.x
-		$Raycast.cast_to.x *= init_direction.x
+#		$Raycast.cast_to.x *= init_direction.x
 
 	if rand_num > 0.6:
 		role = "Customer"

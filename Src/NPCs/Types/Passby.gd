@@ -10,7 +10,7 @@ var fsm
 
 func enter():
 	character = get_parent().get_parent()
-	character.global_position.y += 40
+	character.global_position.y += 50
 	state = get_child(0)
 	_enter_state()
 

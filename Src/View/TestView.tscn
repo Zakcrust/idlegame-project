@@ -24,3 +24,8 @@ script = ExtResource( 5 )
 
 [node name="NPCSpawner" parent="YSort" instance=ExtResource( 3 )]
 spawn_wait_time = 3.0
+
+[node name="TPSCounter" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="TPSCounter" to="." method="_on_TPSCounter_timeout"]

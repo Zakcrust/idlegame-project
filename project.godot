@@ -13,9 +13,21 @@ _global_script_classes=[ {
 "class": "FiniteStateMachine",
 "language": "GDScript",
 "path": "res://Src/Utils/FiniteStateMachine.gd"
+}, {
+"base": "Resource",
+"class": "ItemBoosts",
+"language": "GDScript",
+"path": "res://Src/Utils/ItemBoosts.gd"
+}, {
+"base": "Node",
+"class": "ShopItem",
+"language": "GDScript",
+"path": "res://Src/Utils/ShopItem.gd"
 } ]
 _global_script_class_icons={
-"FiniteStateMachine": ""
+"FiniteStateMachine": "",
+"ItemBoosts": "",
+"ShopItem": ""
 }
 
 [application]
@@ -27,6 +39,10 @@ config/icon="res://icon.png"
 [autoload]
 
 GameReducer="*res://Src/Globals/Redux/Reducer/GameReducer.gd"
+Actions="*res://Src/Redux/actions.gd"
+ActionTypes="*res://Src/Redux/action_types.gd"
+Reducers="*res://Src/Redux/reducers.gd"
+Store="*res://Src/Redux/store.gd"
 
 [display]
 
