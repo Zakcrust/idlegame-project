@@ -2,7 +2,11 @@ extends Node
 
 class_name ShopItem
 
-c
+var item_name : String
+var item_price : int
+var item_boost : String
+var price_multiplier : float
+
 
 func _init(p_name : String, p_price : int, p_boost, p_multiplier):
 	item_name = p_name

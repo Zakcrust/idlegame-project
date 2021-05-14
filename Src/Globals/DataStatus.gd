@@ -1,0 +1,5 @@
+extends Node
+
+const SUCCESS = "SUCCESS"
+const INSUFFICIENT_MONEY = "INSUFFICIENT_MONEY"
+const ERROR = "ERROR"
