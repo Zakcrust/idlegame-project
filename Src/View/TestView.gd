@@ -7,7 +7,7 @@ var registered_tap : int = 0
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.pressed:
-			generate_coins(event.global_position)
+			generate_coins(event.position)
 			registered_tap += 1
 
 

@@ -58,7 +58,7 @@ func check_game_shop() -> void:
 	randr_dist_to_shop = random.randf_range(90 + rand_y, 150)
 	if not action_done and character.global_position.distance_to(active_shops.global_position) < randr_dist_to_shop:
 		change_to("Idle")
-		yield(get_tree().create_timer(3.0),"timeout")
+		yield(get_tree().create_timer(1.0),"timeout")
 		action_done = true
 		change_to("Move")
 		

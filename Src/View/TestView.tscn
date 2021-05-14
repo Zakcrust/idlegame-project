@@ -10,15 +10,15 @@
 script = ExtResource( 1 )
 
 [node name="background" type="Sprite" parent="."]
-position = Vector2( 755.294, 215.986 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 297.444, 637.372 )
+scale = Vector2( 0.605761, 3.14604 )
 texture = ExtResource( 2 )
 
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Shop" type="Sprite" parent="YSort"]
-position = Vector2( 679.314, 414.251 )
-scale = Vector2( 3.52554, 1.92954 )
+position = Vector2( 294.915, 1108.59 )
+scale = Vector2( 3.60897, 2.30496 )
 texture = ExtResource( 4 )
 script = ExtResource( 5 )
 
