@@ -19,7 +19,7 @@ func enter():
 	rand_y = random.randi_range(0, 25)
 	character = get_parent().get_parent()
 	character.global_position.y += rand_y
-	active_shops = GameReducer.get_active_shop()
+	active_shops = DataManager.get_shop_instance()
 	state = get_child(0)
 	_enter_state()
 

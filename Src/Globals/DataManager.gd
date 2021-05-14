@@ -3,6 +3,7 @@ extends Node
 signal money_changed(value)
 signal item_bought(status, item)
 signal item_upgraded(status, item)
+signal shop_changed(value)
 
 var data = {
 	"currecy" : {
@@ -14,7 +15,7 @@ var data = {
 		"is_loading" : false
 	},
 	"shop" : {
-		"shop_name" : "",
+		"instance" : null,
 		"items" : [
 			{
 				"shop_name" : "",
@@ -47,10 +48,11 @@ func get_money(value) -> int:
 	return data["currency"]["money"]
 
 func set_shop_instance(instance) -> void:
-	pass
+	data['shop']['instance'] = instance
+	emit_signal("shop_changed", instance)
 
-func get_shop_instance() -> void:
-	pass
+func get_shop_instance():
+	return data['shop']['instance']
 
 func buy_item(item_name) -> void:
 	var selected_item = null

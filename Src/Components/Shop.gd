@@ -1,4 +1,4 @@
 extends Sprite
 
 func _ready():
-	pass
+	DataManager.set_shop_instance(self)

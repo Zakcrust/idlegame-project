@@ -20,7 +20,6 @@ var swipe_mouse_times := []
 var swipe_mouse_positions := []
 var tween : Tween
 
-
 func _input(ev) -> void:
 	if !is_visible_in_tree():
 		return

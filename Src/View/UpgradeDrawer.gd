@@ -28,5 +28,5 @@ func _on_Ingredient_pressed():
 
 
 func _on_Mask_gui_input(event):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and $Mask.modulate.a8 == 70:
 		hide_drawer()
