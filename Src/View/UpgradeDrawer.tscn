@@ -1,0 +1,292 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Font/DINRoundPro-Black.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Src/View/ScrollScript.gd" type="Script" id=2]
+[ext_resource path="res://Src/View/UpgradeItem.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Src/View/UpgradeDrawer.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "display_drawer"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("DrawerContainer:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1300 ), Vector2( 0, 340 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DrawerContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ButtonContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Mask:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.27451 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "hide_drawer"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("DrawerContainer:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 340 ), Vector2( 0, 1300 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DrawerContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ButtonContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Mask:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.27451 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="UpgradeDrawer" type="CanvasLayer"]
+script = ExtResource( 4 )
+
+[node name="Mask" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 600.0
+margin_bottom = 1440.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonContainer" type="ColorRect" parent="."]
+margin_top = 1310.0
+margin_right = 600.0
+margin_bottom = 1444.0
+color = Color( 0.0156863, 0.109804, 0.368627, 1 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ButtonContainer"]
+margin_top = -32.7579
+margin_right = 600.0
+margin_bottom = 42.2421
+custom_constants/separation = 60
+alignment = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Upgrade" type="Button" parent="ButtonContainer/HBoxContainer"]
+margin_left = 70.0
+margin_right = 270.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 200, 75 )
+custom_fonts/font = SubResource( 5 )
+text = "Upgrade"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ingredient" type="Button" parent="ButtonContainer/HBoxContainer"]
+margin_left = 330.0
+margin_right = 530.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 200, 75 )
+custom_fonts/font = SubResource( 2 )
+text = "Bahan"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DrawerContainer" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 1300.0
+margin_right = 600.0
+margin_bottom = 2399.0
+color = Color( 0.0156863, 0.109804, 0.368627, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DrawerContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 600, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleContainer" type="ColorRect" parent="DrawerContainer/VBoxContainer"]
+margin_right = 612.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 600, 70 )
+color = Color( 0.384314, 0.45098, 0.635294, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="DrawerContainer/VBoxContainer/TitleContainer"]
+margin_left = 20.0
+margin_right = 600.0
+margin_bottom = 64.0
+custom_fonts/font = SubResource( 5 )
+text = "<< TEXT >>"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DrawerContainer/VBoxContainer"]
+margin_top = 74.0
+margin_right = 612.0
+margin_bottom = 1074.0
+rect_min_size = Vector2( 0, 1000 )
+scroll_horizontal_enabled = false
+script = ExtResource( 2 )
+
+[node name="UpgradeContainer" type="VBoxContainer" parent="DrawerContainer/VBoxContainer/ScrollContainer"]
+margin_right = 600.0
+margin_bottom = 1270.0
+rect_min_size = Vector2( 600, 0 )
+custom_constants/separation = 10
+
+[node name="UpgradeItem" parent="DrawerContainer/VBoxContainer/ScrollContainer/UpgradeContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 600.0
+margin_bottom = 150.0
+
+[node name="UpgradeItem2" parent="DrawerContainer/VBoxContainer/ScrollContainer/UpgradeContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 160.0
+margin_right = 600.0
+margin_bottom = 310.0
+
+[node name="UpgradeItem3" parent="DrawerContainer/VBoxContainer/ScrollContainer/UpgradeContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 320.0
+margin_right = 600.0
+margin_bottom = 470.0
+
+[node name="UpgradeItem4" parent="DrawerContainer/VBoxContainer/ScrollContainer/UpgradeContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 480.0
+margin_right = 600.0
+margin_bottom = 630.0
+
+[node name="UpgradeItem5" parent="DrawerContainer/VBoxContainer/ScrollContainer/UpgradeContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 640.0
+margin_right = 600.0
+margin_bottom = 790.0
+
+[node name="UpgradeItem6" parent="DrawerContainer/VBoxContainer/ScrollContainer/UpgradeContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 800.0
+margin_right = 600.0
+margin_bottom = 950.0
+
+[node name="UpgradeItem7" parent="DrawerContainer/VBoxContainer/ScrollContainer/UpgradeContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 960.0
+margin_right = 600.0
+margin_bottom = 1110.0
+
+[node name="UpgradeItem8" parent="DrawerContainer/VBoxContainer/ScrollContainer/UpgradeContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 1120.0
+margin_right = 600.0
+margin_bottom = 1270.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/display_drawer = SubResource( 3 )
+anims/hide_drawer = SubResource( 4 )
+
+[connection signal="gui_input" from="Mask" to="." method="_on_Mask_gui_input"]
+[connection signal="pressed" from="ButtonContainer/HBoxContainer/Upgrade" to="." method="_on_Upgrade_pressed"]
+[connection signal="pressed" from="ButtonContainer/HBoxContainer/Ingredient" to="." method="_on_Ingredient_pressed"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Src/View/TestView.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Background/ecc46dfd631e832dec19493d9fa4fe7f.jpg" type="Texture" id=2]
 [ext_resource path="res://Src/Utils/Spawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://Src/Components/Shop.gd" type="Script" id=5]
+[ext_resource path="res://Src/View/GameUI.tscn" type="PackedScene" id=6]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -27,5 +28,7 @@ spawn_wait_time = 3.0
 
 [node name="TPSCounter" type="Timer" parent="."]
 autostart = true
+
+[node name="GameUI" parent="." instance=ExtResource( 6 )]
 
 [connection signal="timeout" from="TPSCounter" to="." method="_on_TPSCounter_timeout"]
