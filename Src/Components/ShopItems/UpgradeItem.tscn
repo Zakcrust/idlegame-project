@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Font/DINRoundPro-Black.ttf" type="DynamicFontData" id=2]
@@ -11,7 +11,12 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 25
+use_mipmaps = true
 use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 18
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -53,9 +58,9 @@ rect_min_size = Vector2( 260, 0 )
 alignment = 1
 
 [node name="Name" type="Label" parent="HBoxContainer/Labels"]
-margin_top = 17.0
+margin_top = 3.0
 margin_right = 260.0
-margin_bottom = 59.0
+margin_bottom = 45.0
 custom_fonts/font = SubResource( 1 )
 text = "<< Name >>"
 valign = 1
@@ -64,9 +69,9 @@ __meta__ = {
 }
 
 [node name="Level" type="Label" parent="HBoxContainer/Labels"]
-margin_top = 63.0
+margin_top = 49.0
 margin_right = 260.0
-margin_bottom = 96.0
+margin_bottom = 82.0
 custom_fonts/font = SubResource( 2 )
 text = "<< Level >>"
 valign = 1
@@ -75,15 +80,23 @@ __meta__ = {
 }
 
 [node name="Price" type="Label" parent="HBoxContainer/Labels"]
-margin_top = 100.0
+margin_top = 86.0
 margin_right = 260.0
-margin_bottom = 133.0
+margin_bottom = 119.0
 custom_fonts/font = SubResource( 2 )
 text = "<< Price >>"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Desc" type="Label" parent="HBoxContainer/Labels"]
+margin_top = 123.0
+margin_right = 260.0
+margin_bottom = 147.0
+custom_fonts/font = SubResource( 4 )
+text = "<< Description >>"
+valign = 1
 
 [node name="Buy" type="Button" parent="HBoxContainer"]
 margin_left = 450.0
