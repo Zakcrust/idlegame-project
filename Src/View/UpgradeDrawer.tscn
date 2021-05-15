@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Font/DINRoundPro-Black.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Src/View/ScrollScript.gd" type="Script" id=2]
-[ext_resource path="res://Src/View/UpgradeItem.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Src/View/UpgradeDrawer.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
@@ -160,7 +159,7 @@ margin_right = 270.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 200, 75 )
 custom_fonts/font = SubResource( 1 )
-text = "Upgrade"
+text = "Peralatan"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -197,7 +196,7 @@ __meta__ = {
 }
 
 [node name="TitleContainer" type="ColorRect" parent="DrawerContainer/VBoxContainer"]
-margin_right = 612.0
+margin_right = 600.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 600, 70 )
 color = Color( 0.384314, 0.45098, 0.635294, 1 )
@@ -219,7 +218,7 @@ __meta__ = {
 
 [node name="ScrollContainer" type="ScrollContainer" parent="DrawerContainer/VBoxContainer"]
 margin_top = 74.0
-margin_right = 612.0
+margin_right = 600.0
 margin_bottom = 1074.0
 rect_min_size = Vector2( 0, 1000 )
 scroll_horizontal_enabled = false
@@ -227,64 +226,8 @@ script = ExtResource( 2 )
 
 [node name="UpgradeContainer" type="VBoxContainer" parent="DrawerContainer/VBoxContainer/ScrollContainer"]
 margin_right = 600.0
-margin_bottom = 1270.0
 rect_min_size = Vector2( 600, 0 )
 custom_constants/separation = 10
-
-[node name="UpgradeItem" parent="DrawerContainer/VBoxContainer/ScrollContainer/UpgradeContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 600.0
-margin_bottom = 150.0
-
-[node name="UpgradeItem2" parent="DrawerContainer/VBoxContainer/ScrollContainer/UpgradeContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 160.0
-margin_right = 600.0
-margin_bottom = 310.0
-
-[node name="UpgradeItem3" parent="DrawerContainer/VBoxContainer/ScrollContainer/UpgradeContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 320.0
-margin_right = 600.0
-margin_bottom = 470.0
-
-[node name="UpgradeItem4" parent="DrawerContainer/VBoxContainer/ScrollContainer/UpgradeContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 480.0
-margin_right = 600.0
-margin_bottom = 630.0
-
-[node name="UpgradeItem5" parent="DrawerContainer/VBoxContainer/ScrollContainer/UpgradeContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 640.0
-margin_right = 600.0
-margin_bottom = 790.0
-
-[node name="UpgradeItem6" parent="DrawerContainer/VBoxContainer/ScrollContainer/UpgradeContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 800.0
-margin_right = 600.0
-margin_bottom = 950.0
-
-[node name="UpgradeItem7" parent="DrawerContainer/VBoxContainer/ScrollContainer/UpgradeContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 960.0
-margin_right = 600.0
-margin_bottom = 1110.0
-
-[node name="UpgradeItem8" parent="DrawerContainer/VBoxContainer/ScrollContainer/UpgradeContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 1120.0
-margin_right = 600.0
-margin_bottom = 1270.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/display_drawer = SubResource( 3 )

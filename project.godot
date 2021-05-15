@@ -46,6 +46,7 @@ config/icon="res://icon.png"
 
 DataManager="*res://Src/Globals/DataManager.gd"
 DataStatus="*res://Src/Globals/DataStatus.gd"
+EventManager="*res://Src/Globals/EventManager.gd"
 
 [display]
 

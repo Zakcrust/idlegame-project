@@ -6,7 +6,7 @@ onready var drawer_label = $DrawerContainer/VBoxContainer/TitleContainer/Title
 
 
 func display_upgrades():
-	drawer_label.text = "Upgrade"
+	drawer_label.text = "Peralatan"
 	$AnimationPlayer.play("display_drawer")
 
 
@@ -20,10 +20,12 @@ func hide_drawer():
 
 
 func _on_Upgrade_pressed():
+	$DrawerContainer/VBoxContainer/ScrollContainer.show_items("tool")
 	display_upgrades()
 
 
 func _on_Ingredient_pressed():
+	$DrawerContainer/VBoxContainer/ScrollContainer.show_items("ingredient")
 	display_ingredients()
 
 
