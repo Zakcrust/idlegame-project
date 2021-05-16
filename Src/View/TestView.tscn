@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Src/View/TestView.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Background/ecc46dfd631e832dec19493d9fa4fe7f.jpg" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://Src/Components/Shop.gd" type="Script" id=5]
 [ext_resource path="res://Src/View/GameUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Src/Components/PopUp/PopUp.tscn" type="PackedScene" id=7]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -30,6 +31,8 @@ spawn_wait_time = 3.0
 autostart = true
 
 [node name="GameUI" parent="." instance=ExtResource( 6 )]
+
+[node name="Popup" parent="GameUI" instance=ExtResource( 7 )]
 
 [node name="IdleTimer" type="Timer" parent="."]
 wait_time = 5.0

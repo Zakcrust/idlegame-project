@@ -29,13 +29,17 @@ func _ready():
 func update_item(status, item) -> void:
 	if status == DataStatus.ERROR:
 		EventManager.emit_signal("show_message", "Error has occured", "ERROR")
+		EventManager.emit_signal("show_pop_up", "Error has occured")
 	elif status == DataStatus.INSUFFICIENT_MONEY:
 		EventManager.emit_signal("show_message", "Insufficient money", "ERROR")
+		EventManager.emit_signal("show_pop_up", "Insufficient money")
 	elif status == DataStatus.SUCCESS:
 		for child in $UpgradeContainer.get_children():
 			if child.item_name == item['item_name']:
 				child.item_level = item['level']
 				child.item_price = item['price']
+				if item['level'] >= item['max_level']:
+					child.max_buy()
 				return
 	
 

@@ -4,6 +4,17 @@ var item_name : String
 var item_level : int setget set_item_level
 var item_price : int setget set_item_price
 
+func enable_buy() -> void:
+	$HBoxContainer/Buy.disabled = false
+
+func disable_buy() -> void:
+	$HBoxContainer/Buy.disabled = true
+
+
+func max_buy() -> void:
+	$HBoxContainer/Buy.disabled = true
+	$HBoxContainer/Buy.text = "Max Level"
+
 func set_item(item) -> void:
 	item_name = item['item_name']
 	item_level = item['level']
