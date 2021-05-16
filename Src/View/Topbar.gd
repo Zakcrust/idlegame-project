@@ -11,3 +11,8 @@ func set_income(value) -> void:
 
 func set_ipm_view(value) -> void:
 	$IncomeContainer/VBoxContainer/Income.text = "Rp. %s /menit" % value
+
+func _on_DebugMoney_pressed():
+	var money = DataManager.get_money()
+	money += 10000
+	DataManager.set_money(money)
