@@ -44,8 +44,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-DataManager="*res://Src/Globals/DataManager.gd"
 DataStatus="*res://Src/Globals/DataStatus.gd"
+EffectStatus="*res://Src/Globals/EffectStatus.gd"
+DataManager="*res://Src/Globals/DataManager.gd"
 EventManager="*res://Src/Globals/EventManager.gd"
 
 [display]

@@ -32,10 +32,10 @@ var data = {
 				"level" : 1,
 				"price" : 100,
 				"price_multiplier" : 1.07,
-				"unlocked" : false,
-				"effect" : "",
-				"effect_value" : 1,
-				"effect_multiplier" : 1.5,
+				"unlocked" : true,
+				"effect" : EffectStatus.IDLE_INCOME,
+				"effect_value" : 2,
+				"effect_multiplier" : 2.5,
 				"max_level" : 10
 			},
 			{
@@ -49,9 +49,9 @@ var data = {
 				"level" : 1,
 				"price" : 100,
 				"price_multiplier" : 1.07,
-				"unlocked" : false,
-				"effect" : "",
-				"effect_value" : 1,
+				"unlocked" : true,
+				"effect" : EffectStatus.IDLE_INCOME,
+				"effect_value" : 6,
 				"effect_multiplier" : 1.5,
 				"max_level" : 10
 			},
@@ -66,10 +66,10 @@ var data = {
 				"level" : 1,
 				"price" : 100,
 				"price_multiplier" : 1.07,
-				"unlocked" : false,
-				"effect" : "",
-				"effect_value" : 1,
-				"effect_multiplier" : 1.5,
+				"unlocked" : true,
+				"effect" : EffectStatus.IDLE_INCOME,
+				"effect_value" : 2,
+				"effect_multiplier" : 1.3,
 				"max_level" : 10
 			},
 			{
@@ -83,10 +83,10 @@ var data = {
 				"level" : 1,
 				"price" : 100,
 				"price_multiplier" : 1.07,
-				"unlocked" : false,
-				"effect" : "",
-				"effect_value" : 1,
-				"effect_multiplier" : 1.5,
+				"unlocked" : true,
+				"effect" : EffectStatus.TAP_INCOME,
+				"effect_value" : 4,
+				"effect_multiplier" : 2.5,
 				"max_level" : 10
 			},
 			{
@@ -100,9 +100,9 @@ var data = {
 				"level" : 1,
 				"price" : 100,
 				"price_multiplier" : 1.07,
-				"unlocked" : false,
-				"effect" : "",
-				"effect_value" : 1,
+				"unlocked" : true,
+				"effect" : EffectStatus.TAP_INCOME,
+				"effect_value" : 6,
 				"effect_multiplier" : 1.5,
 				"max_level" : 10
 			},
@@ -118,9 +118,9 @@ var data = {
 				"price" : 100,
 				"price_multiplier" : 1.07,
 				"unlocked" : false,
-				"effect" : "",
-				"effect_value" : 1,
-				"effect_multiplier" : 1.5,
+				"effect" : EffectStatus.TAP_INCOME,
+				"effect_value" : 2,
+				"effect_multiplier" : 1.3,
 				"max_level" : 10
 			}
 		],
@@ -197,9 +197,19 @@ func buy_item(item_name) -> void:
 	if data['currency']['money'] < selected_item['price']:
 		emit_signal("item_bought", DataStatus.INSUFFICIENT_MONEY, null)
 		return
+	if selected_item['effect'] == EffectStatus.IDLE_INCOME:
+		var temp : int = DataManager.get_idle_value()
+		temp += selected_item['effect_value']
+		DataManager.set_idle_value(temp)
+	elif selected_item['effect'] == EffectStatus.TAP_INCOME:
+		var temp : int = DataManager.get_tap_value()
+		temp += selected_item['effect_value']
+		DataManager.set_tap_value(temp)
+	selected_item['effect_value'] = floor(selected_item['effect_value'] * selected_item['effect_multiplier'])
 	selected_item['level'] += 1
 	selected_item['price'] *= selected_item['price_multiplier']
 	selected_item['price'] = floor(selected_item['price'])
+	
 	var new_currency = data['currency']['money'] - selected_item['price']
 	set_money(new_currency)
 	emit_signal("item_bought", DataStatus.SUCCESS, selected_item)
@@ -218,6 +228,7 @@ func upgrade_item(item_name) -> void:
 		return
 	data['item_name']['unlocked'] = false
 	emit_signal("item_upgraded", DataStatus.SUCCESS, selected_item)
+
 
 func get_items(type, shop_name) -> Array:
 	var result = []

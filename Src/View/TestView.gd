@@ -10,7 +10,17 @@ var money : int
 
 func _ready():
 	tap_value = DataManager.get_tap_value()
+	idle_income = DataManager.get_idle_value()
 	money = DataManager.get_money()
+	DataManager.connect("idle_value_changed", self, "set_idle_income")
+	DataManager.connect("tap_value_changed", self, "set_tap_income")
+
+func set_tap_income(value) -> void:
+	tap_value = value
+
+
+func set_idle_income(value) -> void:
+	idle_income = value
 
 func _input(event):
 	if event is InputEventMouseButton:
