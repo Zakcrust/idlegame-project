@@ -205,13 +205,14 @@ func buy_item(item_name) -> void:
 		var temp : int = DataManager.get_tap_value()
 		temp += selected_item['effect_value']
 		DataManager.set_tap_value(temp)
+	
+	var new_currency = data['currency']['money'] - selected_item['price']
+	set_money(new_currency)
+	
 	selected_item['effect_value'] = floor(selected_item['effect_value'] * selected_item['effect_multiplier'])
 	selected_item['level'] += 1
 	selected_item['price'] *= selected_item['price_multiplier']
 	selected_item['price'] = floor(selected_item['price'])
-	
-	var new_currency = data['currency']['money'] - selected_item['price']
-	set_money(new_currency)
 	emit_signal("item_bought", DataStatus.SUCCESS, selected_item)
 
 
