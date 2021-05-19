@@ -1,9 +1,9 @@
 extends ShopItem
 
-var item_name : String 
-var item_price : int
-var item_boost : String 
-var price_multiplier : float
+var p_name : String 
+var p_price : int
+var p_boost : String 
+var multiplier : float
 
-func _init().(item_name, item_price, item_boost, price_multiplier):
+func _init().(p_name, p_price, p_boost, multiplier):
 	pass

@@ -145,7 +145,8 @@ var data = {
 }
 
 func _ready():
-	pass
+	get_tree().set_auto_accept_quit(false)
+	SaveManager.load_save(SaveManager.save_file)
 
 func set_ipm(value) -> void:
 	data['currency']['ipm'] = value
@@ -237,3 +238,8 @@ func get_items(type, shop_name) -> Array:
 		if item['shop_name'] == shop_name and item['type'] == type:
 			result.append(item)
 	return result
+
+func _notification(what):
+	if what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
+		SaveManager.save(SaveManager.save_file, data)
+		EventManager.emit_signal("quit_pop_up")

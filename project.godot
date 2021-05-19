@@ -41,10 +41,13 @@ _global_script_class_icons={
 config/name="IdleGameProject"
 run/main_scene="res://Src/View/TestView.tscn"
 config/icon="res://icon.png"
+config/auto_accept_quit=false
+config/quit_on_go_back=false
 
 [autoload]
 
 DataStatus="*res://Src/Globals/DataStatus.gd"
+SaveManager="*res://Src/Globals/SaveManager.gd"
 EffectStatus="*res://Src/Globals/EffectStatus.gd"
 DataManager="*res://Src/Globals/DataManager.gd"
 EventManager="*res://Src/Globals/EventManager.gd"
