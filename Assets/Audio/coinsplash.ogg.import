@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/coinsplash.ogg-2a9ec056a4dd30d9f2c85f298bca75fc.oggstr"
+
+[deps]
+
+source_file="res://Assets/Audio/coinsplash.ogg"
+dest_files=[ "res://.import/coinsplash.ogg-2a9ec056a4dd30d9f2c85f298bca75fc.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -7,11 +7,11 @@
 [ext_resource path="res://Assets/Sprites/UI/gear.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Sprites/UI/trophy.png" type="Texture" id=6]
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=10]
 bg_color = Color( 0.0156863, 0.109804, 0.368627, 1 )
 shadow_size = 2
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=11]
 size = 32
 use_filter = true
 font_data = ExtResource( 1 )
@@ -24,12 +24,12 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 shadow_size = 5
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=12]
 size = 20
 use_filter = true
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=13]
 bg_color = Color( 0.803922, 0.8, 0.8, 1 )
 corner_radius_top_left = 30
 corner_radius_top_right = 30
@@ -37,7 +37,7 @@ corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 shadow_size = 10
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=14]
 bg_color = Color( 0.803922, 0.8, 0.8, 1 )
 corner_radius_top_left = 30
 corner_radius_top_right = 30
@@ -45,7 +45,7 @@ corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 shadow_size = 10
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=15]
 bg_color = Color( 0.803922, 0.8, 0.8, 1 )
 corner_radius_top_left = 30
 corner_radius_top_right = 30
@@ -72,7 +72,7 @@ script = ExtResource( 2 )
 [node name="Bar" type="Panel" parent="."]
 margin_right = 600.0
 margin_bottom = 95.0
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
@@ -82,7 +82,7 @@ __meta__ = {
 margin_left = 50.0
 margin_right = 372.999
 margin_bottom = 95.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 11 )
 text = "<< Money >>"
 valign = 1
 __meta__ = {
@@ -114,7 +114,7 @@ margin_top = 19.0
 margin_right = 320.0
 margin_bottom = 45.0
 grow_horizontal = 0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 12 )
 text = "Pendapatan"
 align = 1
 valign = 1
@@ -127,7 +127,7 @@ margin_top = 49.0
 margin_right = 320.0
 margin_bottom = 75.0
 grow_horizontal = 0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 12 )
 text = "<< Income >>"
 align = 1
 valign = 1
@@ -142,11 +142,11 @@ margin_right = 160.0
 margin_bottom = 253.0
 rect_min_size = Vector2( 150, 150 )
 rect_scale = Vector2( 0.712258, 0.712258 )
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/normal = SubResource( 7 )
-custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 13 )
+custom_styles/pressed = SubResource( 14 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/normal = SubResource( 15 )
+custom_fonts/font = SubResource( 11 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -170,11 +170,11 @@ margin_right = 276.868
 margin_bottom = 253.0
 rect_min_size = Vector2( 150, 150 )
 rect_scale = Vector2( 0.528047, 0.528047 )
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/normal = SubResource( 7 )
-custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 13 )
+custom_styles/pressed = SubResource( 14 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/normal = SubResource( 15 )
+custom_fonts/font = SubResource( 11 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -192,24 +192,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Config" type="Button" parent="."]
+[node name="Settings" type="Button" parent="."]
 margin_left = 518.093
 margin_top = 14.2464
 margin_right = 668.093
 margin_bottom = 164.246
 rect_min_size = Vector2( 150, 150 )
 rect_scale = Vector2( 0.463407, 0.463407 )
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/normal = SubResource( 7 )
-custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 13 )
+custom_styles/pressed = SubResource( 14 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/normal = SubResource( 15 )
+custom_fonts/font = SubResource( 11 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="TextureRect" parent="Config"]
+[node name="Sprite" type="TextureRect" parent="Settings"]
 margin_left = 25.4429
 margin_top = 31.6187
 margin_right = 485.443
@@ -228,11 +228,11 @@ margin_right = 586.13
 margin_bottom = 164.246
 rect_min_size = Vector2( 150, 150 )
 rect_scale = Vector2( 0.463407, 0.463407 )
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/normal = SubResource( 7 )
-custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 13 )
+custom_styles/pressed = SubResource( 14 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/normal = SubResource( 15 )
+custom_fonts/font = SubResource( 11 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -266,6 +266,6 @@ __meta__ = {
 
 [connection signal="pressed" from="Map" to="." method="_on_Map_pressed"]
 [connection signal="pressed" from="Quest" to="." method="_on_Quest_pressed"]
-[connection signal="pressed" from="Config" to="." method="_on_Config_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Achievement" to="." method="_on_Achievement_pressed"]
 [connection signal="pressed" from="DebugMoney" to="." method="_on_DebugMoney_pressed"]
