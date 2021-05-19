@@ -1,0 +1,211 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Assets/Font/DINRoundPro-Black.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Src/Components/AchievementItems/scroll_script.gd" type="Script" id=2]
+[ext_resource path="res://Src/View/Achievement.gd" type="Script" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.384314, 0.45098, 0.635294, 1 )
+shadow_size = 2
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.803922, 0.8, 0.8, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.803922, 0.8, 0.8, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.803922, 0.8, 0.8, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 5
+
+[sub_resource type="DynamicFont" id=6]
+size = 50
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=7]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control/DrawerContainer:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1300 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Control/DrawerContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Control/DrawerContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control/DrawerContainer:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 1300 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Control/DrawerContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Control/DrawerContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="Achivement" type="CanvasLayer"]
+script = ExtResource( 4 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DrawerContainer" type="ColorRect" parent="Control"]
+visible = false
+margin_right = 600.0
+margin_bottom = 1440.0
+mouse_filter = 1
+color = Color( 0.0156863, 0.109804, 0.368627, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/DrawerContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 600, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bar" type="Panel" parent="Control/DrawerContainer/VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Title" type="Label" parent="Control/DrawerContainer/VBoxContainer/Bar"]
+margin_left = 50.0
+margin_right = 372.999
+margin_bottom = 95.0
+custom_fonts/font = SubResource( 2 )
+text = "Achievement"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="Control/DrawerContainer/VBoxContainer/Bar"]
+margin_left = 518.093
+margin_top = 14.2464
+margin_right = 668.093
+margin_bottom = 164.246
+rect_min_size = Vector2( 150, 150 )
+rect_scale = Vector2( 0.463407, 0.463407 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Back"
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/DrawerContainer/VBoxContainer"]
+margin_top = 104.0
+margin_right = 600.0
+margin_bottom = 1454.0
+rect_min_size = Vector2( 0, 1350 )
+scroll_horizontal_enabled = false
+script = ExtResource( 2 )
+
+[node name="AchievementContainer" type="VBoxContainer" parent="Control/DrawerContainer/VBoxContainer/ScrollContainer"]
+margin_right = 600.0
+rect_min_size = Vector2( 600, 0 )
+mouse_filter = 2
+custom_constants/separation = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/display_drawer = SubResource( 7 )
+anims/hide_drawer = SubResource( 8 )
+
+[connection signal="pressed" from="Control/DrawerContainer/VBoxContainer/Bar/Back" to="." method="_on_Back_pressed"]

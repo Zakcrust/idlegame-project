@@ -14,6 +14,11 @@ func _ready():
 	money = DataManager.get_money()
 	DataManager.connect("idle_value_changed", self, "set_idle_income")
 	DataManager.connect("tap_value_changed", self, "set_tap_income")
+	
+	if ConfigManager.is_bgm_on():
+		SoundManager.resume_bgm()
+	else:
+		SoundManager.pause_bgm()
 
 func set_tap_income(value) -> void:
 	tap_value = value

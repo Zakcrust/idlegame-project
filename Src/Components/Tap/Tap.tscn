@@ -28,7 +28,7 @@ script = ExtResource( 2 )
 
 [node name="Icon" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 5
+frame = 6
 playing = true
 
 [node name="Label" type="Label" parent="."]

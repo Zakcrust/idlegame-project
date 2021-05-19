@@ -1,0 +1,169 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Assets/Font/DINRoundPro-Black.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Src/View/Settings.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.839216, 0.839216, 0.839216, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.0156863, 0.109804, 0.368627, 1 )
+shadow_size = 2
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.803922, 0.8, 0.8, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.803922, 0.8, 0.8, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.803922, 0.8, 0.8, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 5
+
+[sub_resource type="DynamicFont" id=9]
+size = 50
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0.890196, 0.556863, 0.129412, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.890196, 0.556863, 0.129412, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 5
+
+[node name="Settings" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="Control" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Control"]
+margin_right = 600.0
+margin_bottom = 1440.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Bar" type="Panel" parent="Control"]
+margin_right = 600.0
+margin_bottom = 95.0
+custom_styles/panel = SubResource( 8 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Title" type="Label" parent="Control/Bar"]
+margin_left = 50.0
+margin_right = 372.999
+margin_bottom = 95.0
+custom_fonts/font = SubResource( 2 )
+text = "Settings"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="Control/Bar"]
+margin_left = 518.093
+margin_top = 14.2464
+margin_right = 668.093
+margin_bottom = 164.246
+rect_min_size = Vector2( 150, 150 )
+rect_scale = Vector2( 0.463407, 0.463407 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Back"
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+margin_left = 30.0
+margin_top = 125.0
+margin_right = 570.0
+margin_bottom = 485.0
+rect_min_size = Vector2( 540, 0 )
+custom_constants/separation = 30
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sfx" type="Button" parent="Control/VBoxContainer"]
+margin_right = 540.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+focus_mode = 0
+custom_styles/pressed = SubResource( 11 )
+custom_styles/normal = SubResource( 10 )
+custom_fonts/font = SubResource( 2 )
+text = "Sound Effect"
+
+[node name="Bgm" type="Button" parent="Control/VBoxContainer"]
+margin_top = 130.0
+margin_right = 540.0
+margin_bottom = 230.0
+rect_min_size = Vector2( 0, 100 )
+focus_mode = 0
+custom_styles/pressed = SubResource( 11 )
+custom_styles/normal = SubResource( 10 )
+custom_fonts/font = SubResource( 2 )
+text = "Music"
+
+[node name="ResetData" type="Button" parent="Control/VBoxContainer"]
+margin_top = 260.0
+margin_right = 540.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 0, 100 )
+focus_mode = 0
+custom_styles/pressed = SubResource( 11 )
+custom_styles/normal = SubResource( 10 )
+custom_fonts/font = SubResource( 2 )
+text = "Reset Data"
+
+[connection signal="pressed" from="Control/Bar/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Sfx" to="." method="_on_Sfx_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Bgm" to="." method="_on_Bgm_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/ResetData" to="." method="_on_ResetData_pressed"]

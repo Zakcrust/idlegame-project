@@ -1,7 +1,17 @@
 extends CanvasLayer
 
-func _ready():
-	DataManager.connect("money_changed", self, "set_earnings")
 
-func set_earnings(value : int) -> void:
-	$Control/Earnings.text = "Rp. %s " % value
+func _on_Topbar_settings_pressed():
+	$Settings.display()
+
+
+func _on_Topbar_quest_pressed():
+	pass # Replace with function body.
+
+
+func _on_Topbar_map_pressed():
+	pass # Replace with function body.
+
+
+func _on_Topbar_achievement_pressed():
+	$Achivement.display()
