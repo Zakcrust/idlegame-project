@@ -1,0 +1,116 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Font/DINRoundPro-Black.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 25
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 1, 1, 1 )
+
+[node name="AchivementItem" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -1340.0
+rect_min_size = Vector2( 600, 150 )
+mouse_filter = 2
+color = Color( 0.835294, 0.431373, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 600.0
+margin_bottom = 40.0
+mouse_filter = 2
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer"]
+margin_right = 150.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 150, 150 )
+texture = ExtResource( 1 )
+expand = true
+
+[node name="Labels" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 170.0
+margin_right = 430.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 260, 0 )
+alignment = 1
+
+[node name="Name" type="Label" parent="HBoxContainer/Labels"]
+margin_top = 35.0
+margin_right = 260.0
+margin_bottom = 77.0
+custom_fonts/font = SubResource( 1 )
+text = "<< Name >>"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="HBoxContainer/Labels"]
+margin_top = 81.0
+margin_right = 260.0
+margin_bottom = 114.0
+custom_fonts/font = SubResource( 2 )
+text = "<< Description >>"
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Reward" type="Panel" parent="HBoxContainer"]
+margin_left = 450.0
+margin_right = 600.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 150, 150 )
+mouse_filter = 2
+custom_styles/panel = SubResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Reward"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 150, 150 )
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="HBoxContainer/Reward/VBoxContainer"]
+margin_top = 40.0
+margin_right = 150.0
+margin_bottom = 73.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Reward"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="HBoxContainer/Reward/VBoxContainer"]
+margin_top = 77.0
+margin_right = 150.0
+margin_bottom = 110.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "<<Value>>"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

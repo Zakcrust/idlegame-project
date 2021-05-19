@@ -14,4 +14,4 @@ func _on_Topbar_map_pressed():
 
 
 func _on_Topbar_achievement_pressed():
-	pass # Replace with function body.
+	$Achivement.display()
