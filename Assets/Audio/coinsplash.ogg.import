@@ -11,5 +11,5 @@ dest_files=[ "res://.import/coinsplash.ogg-2a9ec056a4dd30d9f2c85f298bca75fc.oggs
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

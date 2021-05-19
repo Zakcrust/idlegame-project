@@ -3,9 +3,6 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node
 
-export (bool) var debug = false
-
-## MUSIC RELATED
 onready var music_player = $MusicPlayer
 var current_music_stream
 var pause_position
@@ -31,7 +28,7 @@ onready var sfx_player = {
 
 ########## Music ##########
 var music = {
-	\"test\" : \"res://Assets/Audio/bgm.ogg\",
+	\"default\" : \"res://Assets/Audio/bgm.ogg\",
 }
 ##############################
 
@@ -44,18 +41,13 @@ var effect = {
 }
 ################################################################
 
-func _ready():
-	randomize()
-
 
 func play_random_music():
 	var rand = round(rand_range(0, music.size() - 1))
-	play_music(music.keys()[rand])
-	if debug:
-		print(\"Available Music : \" + str(music.keys()))
+	play_bgm(music.keys()[rand])
 
 
-func play_music(music_name):
+func play_bgm(music_name):
 	if current_music_stream != null:
 		pause_position = get_music_position()
 		
@@ -63,36 +55,30 @@ func play_music(music_name):
 		current_music_stream = music[music_name]
 		music_player.stream = load(current_music_stream)
 	
-	if ConfigManager.music_on:
-		resume_music()
-		if debug:
-			print(\"Playing music : \" + music_name)
+	if ConfigManager.is_bgm_on():
+		resume_bgm()
 
 
 func get_music_position():
 	return music_player.get_playback_position()
 
 
-func pause_music():
+func pause_bgm():
 	pause_position = get_music_position()
 	music_player.stop()
-	if debug:
-		print(\"Music paused\")
 
 
-func resume_music():
+func resume_bgm():
 	if current_music_stream == null:
 		play_random_music()
 	else:
 		if get_music_position() == 0: 
 			pause_position = 0
 		music_player.play(pause_position)
-		if debug:
-			print(\"Music resumed\")
 
 
-func play_effect(effect_name):
-	if ConfigManager.effect_on:
+func play_sfx(effect_name):
+	if ConfigManager.is_sfx_on():
 		var stream = effect[effect_name]
 		
 		# Checking if sfx overlapped
@@ -112,8 +98,6 @@ func _sfx_play(index, stream):
 	sfx_player[index][\"sound\"] = stream 
 	sfx_player[index][\"node\"].stream = load(stream)
 	sfx_player[index][\"node\"].play()
-	if debug:
-		print(\"Playing SFX Player - \" + str(index))
 "
 
 [node name="SoundManager" type="Node"]

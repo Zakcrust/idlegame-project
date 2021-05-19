@@ -12,20 +12,32 @@ func _ready():
 
 func _on_Sfx_pressed():
 	ConfigManager.toggle_sfx()
+	SoundManager.play_sfx("click")
 	update_button_modulate_state()
 
 
 func _on_Bgm_pressed():
 	ConfigManager.toggle_bgm()
+	SoundManager.play_sfx("click")
 	update_button_modulate_state()
+	
+	if ConfigManager.is_bgm_on():
+		SoundManager.play_bgm("default")
+	else:
+		SoundManager.pause_bgm()
 
 
 func _on_ResetData_pressed():
-	pass # Replace with function body.
+	SoundManager.play_sfx("click")
+
+	## todo
+
+	pass
 
 
 func _on_Back_pressed():
 	control.visible = false
+	SoundManager.play_sfx("click")
 
 
 func update_button_modulate_state():

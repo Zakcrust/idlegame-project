@@ -25,16 +25,20 @@ func hide_drawer():
 
 
 func _on_Upgrade_pressed():
+	SoundManager.play_sfx("click")
 	$DrawerContainer/VBoxContainer/ScrollContainer.show_items("tool")
 	display_upgrades()
 
 
 func _on_Ingredient_pressed():
+	SoundManager.play_sfx("click")
 	$DrawerContainer/VBoxContainer/ScrollContainer.show_items("ingredient")
 	display_ingredients()
 
 
 func _on_Shop_pressed():
+	SoundManager.play_sfx("click")
+#	$DrawerContainer/VBoxContainer/ScrollContainer.show_items("shop")
 	display_shops()
 
 

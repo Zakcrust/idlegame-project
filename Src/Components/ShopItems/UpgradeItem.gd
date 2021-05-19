@@ -24,6 +24,7 @@ func set_item(item) -> void:
 	$HBoxContainer/Labels/Price.text = "Rp. %s" % item_price
 
 func buy_item() -> void:
+	SoundManager.play_sfx("coin")
 	DataManager.buy_item(item_name)
 
 func set_item_level(value) -> void:

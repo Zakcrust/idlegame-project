@@ -25,19 +25,24 @@ func _on_DebugMoney_pressed():
 	var money = DataManager.get_money()
 	money += 10000
 	DataManager.set_money(money)
+	SoundManager.play_sfx("coin")
 
 
 func _on_Map_pressed():
+	SoundManager.play_sfx("click")
 	emit_signal("map_pressed")
 
 
 func _on_Quest_pressed():
+	SoundManager.play_sfx("click")
 	emit_signal("quest_pressed")
 
 
 func _on_Achievement_pressed():
+	SoundManager.play_sfx("click")
 	emit_signal("achievement_pressed")
 
 
 func _on_Settings_pressed():
+	SoundManager.play_sfx("click")
 	emit_signal("settings_pressed")
