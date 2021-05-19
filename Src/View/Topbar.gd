@@ -16,3 +16,19 @@ func _on_DebugMoney_pressed():
 	var money = DataManager.get_money()
 	money += 10000
 	DataManager.set_money(money)
+
+
+func _on_Map_pressed():
+	pass # Replace with function body.
+
+
+func _on_Quest_pressed():
+	pass # Replace with function body.
+
+
+func _on_Config_pressed():
+	pass # Replace with function body.
+
+
+func _on_Achievement_pressed():
+	pass # Replace with function body.

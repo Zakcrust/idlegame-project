@@ -15,6 +15,11 @@ func display_ingredients():
 	$AnimationPlayer.play("display_drawer")
 
 
+func display_shops():
+	drawer_label.text = "Toko"
+	$AnimationPlayer.play("display_drawer")
+
+
 func hide_drawer():
 	$AnimationPlayer.play("hide_drawer")
 
@@ -27,6 +32,10 @@ func _on_Upgrade_pressed():
 func _on_Ingredient_pressed():
 	$DrawerContainer/VBoxContainer/ScrollContainer.show_items("ingredient")
 	display_ingredients()
+
+
+func _on_Shop_pressed():
+	display_shops()
 
 
 func _on_Mask_gui_input(event):

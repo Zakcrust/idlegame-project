@@ -1,19 +1,22 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Font/DINRoundPro-Black.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Src/View/Topbar.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Sprites/UI/map.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/UI/checkmark.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/UI/gear.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/UI/trophy.png" type="Texture" id=6]
 
-[sub_resource type="StyleBoxFlat" id=11]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0156863, 0.109804, 0.368627, 1 )
 shadow_size = 2
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 32
 use_filter = true
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxFlat" id=9]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.890196, 0.556863, 0.129412, 1 )
 corner_radius_top_left = 20
 corner_radius_top_right = 20
@@ -21,12 +24,12 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 shadow_size = 5
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=4]
 size = 20
 use_filter = true
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.803922, 0.8, 0.8, 1 )
 corner_radius_top_left = 30
 corner_radius_top_right = 30
@@ -42,7 +45,7 @@ corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 shadow_size = 10
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.803922, 0.8, 0.8, 1 )
 corner_radius_top_left = 30
 corner_radius_top_right = 30
@@ -58,7 +61,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 shadow_size = 5
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=9]
 size = 20
 use_filter = true
 font_data = ExtResource( 1 )
@@ -69,20 +72,18 @@ script = ExtResource( 2 )
 [node name="Bar" type="Panel" parent="."]
 margin_right = 600.0
 margin_bottom = 95.0
-custom_styles/panel = SubResource( 11 )
+custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="Title" type="Label" parent="Bar"]
-margin_left = 198.0
-margin_right = 569.0
+margin_left = 50.0
+margin_right = 372.999
 margin_bottom = 95.0
-grow_horizontal = 0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "<< Money >>"
-align = 2
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -93,7 +94,7 @@ margin_left = 270.0
 margin_top = 105.0
 margin_right = 590.0
 margin_bottom = 200.0
-custom_styles/panel = SubResource( 9 )
+custom_styles/panel = SubResource( 3 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false,
@@ -113,7 +114,7 @@ margin_top = 19.0
 margin_right = 320.0
 margin_bottom = 45.0
 grow_horizontal = 0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 4 )
 text = "Pendapatan"
 align = 1
 valign = 1
@@ -126,7 +127,7 @@ margin_top = 49.0
 margin_right = 320.0
 margin_bottom = 75.0
 grow_horizontal = 0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 4 )
 text = "<< Income >>"
 align = 1
 valign = 1
@@ -135,17 +136,19 @@ __meta__ = {
 }
 
 [node name="Map" type="Button" parent="."]
-margin_left = 17.0
-margin_top = 18.0
-margin_right = 167.0
-margin_bottom = 168.0
+margin_left = 10.0
+margin_top = 103.0
+margin_right = 160.0
+margin_bottom = 253.0
 rect_min_size = Vector2( 150, 150 )
-custom_styles/hover = SubResource( 7 )
+rect_scale = Vector2( 0.712258, 0.712258 )
+custom_styles/hover = SubResource( 5 )
 custom_styles/pressed = SubResource( 6 )
 custom_styles/focus = SubResource( 6 )
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 1 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 2 )
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -160,6 +163,93 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Quest" type="Button" parent="."]
+margin_left = 126.868
+margin_top = 103.0
+margin_right = 276.868
+margin_bottom = 253.0
+rect_min_size = Vector2( 150, 150 )
+rect_scale = Vector2( 0.528047, 0.528047 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="TextureRect" parent="Quest"]
+margin_left = 29.7249
+margin_top = 31.6187
+margin_right = 778.725
+margin_bottom = 777.619
+rect_scale = Vector2( 0.118464, 0.118464 )
+mouse_filter = 2
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Config" type="Button" parent="."]
+margin_left = 518.093
+margin_top = 14.2464
+margin_right = 668.093
+margin_bottom = 164.246
+rect_min_size = Vector2( 150, 150 )
+rect_scale = Vector2( 0.463407, 0.463407 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="TextureRect" parent="Config"]
+margin_left = 25.4429
+margin_top = 31.6187
+margin_right = 485.443
+margin_bottom = 471.619
+rect_scale = Vector2( 0.215726, 0.215726 )
+mouse_filter = 2
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Achievement" type="Button" parent="."]
+margin_left = 436.13
+margin_top = 14.2464
+margin_right = 586.13
+margin_bottom = 164.246
+rect_min_size = Vector2( 150, 150 )
+rect_scale = Vector2( 0.463407, 0.463407 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="TextureRect" parent="Achievement"]
+margin_left = 20.593
+margin_top = 21.9189
+margin_right = 532.593
+margin_bottom = 533.919
+rect_scale = Vector2( 0.215305, 0.215305 )
+mouse_filter = 2
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="DebugMoney" type="Button" parent="."]
 margin_left = 270.0
 margin_top = 210.0
@@ -168,10 +258,14 @@ margin_bottom = 258.0
 custom_styles/hover = SubResource( 8 )
 custom_styles/focus = SubResource( 8 )
 custom_styles/normal = SubResource( 8 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 9 )
 text = "Debug Money"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="pressed" from="Map" to="." method="_on_Map_pressed"]
+[connection signal="pressed" from="Quest" to="." method="_on_Quest_pressed"]
+[connection signal="pressed" from="Config" to="." method="_on_Config_pressed"]
+[connection signal="pressed" from="Achievement" to="." method="_on_Achievement_pressed"]
 [connection signal="pressed" from="DebugMoney" to="." method="_on_DebugMoney_pressed"]
