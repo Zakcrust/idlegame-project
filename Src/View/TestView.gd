@@ -44,7 +44,6 @@ func generate_coins(coin_pos : Vector2) -> void:
 
 func _on_TPSCounter_timeout():
 	var TPM  = registered_tap * 60
-	print("registered_tap_per_minute : %s" % TPM)
 	registered_tap = 0
 	
 	var npc_to_spawn = TPM / 60
@@ -64,3 +63,12 @@ func _on_IdleTimer_timeout():
 	var idle_money = DataManager.get_money()
 	idle_money += idle_income
 	DataManager.set_money(idle_money)
+
+
+func _on_InputMask_gui_input(event):
+	pass
+#	if event is InputEventMouseButton:
+#		print("pressed")
+#		if event.pressed:
+#			generate_coins(event.position)
+#			registered_tap += 1
