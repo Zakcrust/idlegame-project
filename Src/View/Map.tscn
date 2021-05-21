@@ -1,0 +1,268 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Assets/Font/DINRoundPro-Black.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Src/View/Map.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0.337255, 0.337255, 0.337255, 1 )
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.839216, 0.839216, 0.839216, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.890196, 0.556863, 0.129412, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.890196, 0.556863, 0.129412, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 10
+
+[sub_resource type="DynamicFont" id=7]
+size = 50
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 60
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.0156863, 0.109804, 0.368627, 1 )
+shadow_size = 2
+
+[sub_resource type="Animation" id=3]
+resource_name = "display"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Control:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Control:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="Map" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="Control" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Control"]
+margin_right = 600.0
+margin_bottom = 1440.0
+custom_styles/panel = SubResource( 12 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Inner" type="Panel" parent="Control"]
+margin_left = 20.0
+margin_top = 204.0
+margin_right = 580.0
+margin_bottom = 1239.0
+custom_styles/panel = SubResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1" type="Button" parent="Control/Inner"]
+margin_left = 42.9076
+margin_top = 88.4611
+margin_right = 192.908
+margin_bottom = 238.461
+rect_min_size = Vector2( 300, 200 )
+rect_scale = Vector2( 0.7, 0.7 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="2" type="Button" parent="Control/Inner"]
+margin_left = 295.194
+margin_top = 88.4611
+margin_right = 595.194
+margin_bottom = 288.461
+rect_min_size = Vector2( 300, 200 )
+rect_scale = Vector2( 0.7, 0.7 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="3" type="Button" parent="Control/Inner"]
+margin_left = 167.34
+margin_top = 393.326
+margin_right = 467.34
+margin_bottom = 593.326
+rect_min_size = Vector2( 300, 200 )
+rect_scale = Vector2( 0.7, 0.7 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="4" type="Button" parent="Control/Inner"]
+margin_left = 42.9076
+margin_top = 736.852
+margin_right = 342.908
+margin_bottom = 936.852
+rect_min_size = Vector2( 300, 200 )
+rect_scale = Vector2( 0.7, 0.7 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "4"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="5" type="Button" parent="Control/Inner"]
+margin_left = 295.194
+margin_top = 736.852
+margin_right = 595.194
+margin_bottom = 936.852
+rect_min_size = Vector2( 300, 200 )
+rect_scale = Vector2( 0.7, 0.7 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "5"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Control"]
+margin_top = 57.6846
+margin_right = 600.0
+margin_bottom = 152.685
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 0.835294, 0.835294, 0.835294, 1 )
+text = "Pilih Cabangmu"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bar" type="Panel" parent="Control"]
+margin_top = 1345.0
+margin_right = 600.0
+margin_bottom = 1440.0
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Back" type="Button" parent="Control/Bar"]
+margin_left = 33.9299
+margin_top = -53.2627
+margin_right = 183.93
+margin_bottom = 96.7373
+rect_min_size = Vector2( 150, 150 )
+rect_scale = Vector2( 0.7, 0.7 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Back"
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/display = SubResource( 3 )
+anims/hide = SubResource( 14 )
+
+[connection signal="pressed" from="Control/Bar/Back" to="." method="_on_Back_pressed"]

@@ -9,7 +9,7 @@ Does not work with Touch Screen Buttons as they handle the input before.
 """
 
 export (Vector2) var delta_for_swipe := Vector2(8, 8) 
-
+export (bool) var use_relative := false
 
 var look_for_swipe := false
 var swiping := false
@@ -18,6 +18,9 @@ var swipe_mouse_start : Vector2
 var swipe_mouse_times := []
 var swipe_mouse_positions := []
 var tween : Tween
+
+func _ready():
+	print(rect_global_position)
 
 
 func _input(ev) -> void:
@@ -30,7 +33,11 @@ func _input(ev) -> void:
 		
 	if ev is InputEventMouseButton:
 		
-		if ev.pressed and get_global_rect().has_point(ev.global_position):
+		if ev.pressed:
+			if use_relative and not is_input_position_in_valid_area(ev.position):
+				return
+			elif not use_relative and not get_global_rect().has_point(ev.global_position):
+				return
 			look_for_swipe = true
 			swipe_mouse_start = ev.global_position
 			
@@ -64,7 +71,6 @@ func _input(ev) -> void:
 			look_for_swipe = false
 			
 	if ev is InputEventMouseMotion:
-			
 		if look_for_swipe:
 			var delta = ev.global_position - swipe_mouse_start
 			if abs(delta.x) > delta_for_swipe.x or abs(delta.y) > delta_for_swipe.y:
@@ -84,3 +90,7 @@ func _input(ev) -> void:
 			swipe_mouse_times.append(OS.get_ticks_msec())
 			swipe_mouse_positions.append(ev.global_position)
 			ev.position = Vector2.ZERO
+
+
+func is_input_position_in_valid_area(input_pos) -> bool:
+	return input_pos.y >= rect_global_position.y and input_pos.y <= (rect_global_position.y + rect_size.y)

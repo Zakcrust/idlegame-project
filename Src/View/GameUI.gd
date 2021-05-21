@@ -6,11 +6,11 @@ func _on_Topbar_settings_pressed():
 
 
 func _on_Topbar_quest_pressed():
-	pass # Replace with function body.
+	$Quest.display()
 
 
 func _on_Topbar_map_pressed():
-	pass # Replace with function body.
+	$Map.display()
 
 
 func _on_Topbar_achievement_pressed():

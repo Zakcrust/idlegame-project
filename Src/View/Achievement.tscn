@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/Font/DINRoundPro-Black.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Src/Components/AchievementItems/scroll_script.gd" type="Script" id=2]
+[ext_resource path="res://Src/Utils/ScrollContainerScript.gd" type="Script" id=2]
 [ext_resource path="res://Src/View/Achievement.gd" type="Script" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]

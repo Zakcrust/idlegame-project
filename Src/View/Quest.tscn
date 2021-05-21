@@ -1,0 +1,152 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Font/DINRoundPro-Black.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Src/Utils/ScrollContainerScript.gd" type="Script" id=2]
+[ext_resource path="res://Src/View/Quest.gd" type="Script" id=4]
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.384314, 0.45098, 0.635294, 1 )
+shadow_size = 2
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "display"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Control:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Control:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="Quest" type="CanvasLayer"]
+script = ExtResource( 4 )
+
+[node name="Control" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mask" type="ColorRect" parent="Control"]
+modulate = Color( 1, 1, 1, 0.27451 )
+margin_right = 600.0
+margin_bottom = 1440.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="DrawerContainer" type="ColorRect" parent="Control"]
+margin_top = 417.0
+margin_right = 600.0
+margin_bottom = 1044.0
+mouse_filter = 1
+color = Color( 0.0156863, 0.109804, 0.368627, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/DrawerContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 600, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bar" type="Panel" parent="Control/DrawerContainer/VBoxContainer"]
+margin_right = 612.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+custom_styles/panel = SubResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Title" type="Label" parent="Control/DrawerContainer/VBoxContainer/Bar"]
+margin_right = 600.0
+margin_bottom = 95.0
+custom_fonts/font = SubResource( 5 )
+text = "Quest"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/DrawerContainer/VBoxContainer"]
+margin_top = 104.0
+margin_right = 612.0
+margin_bottom = 604.0
+rect_min_size = Vector2( 0, 500 )
+scroll_horizontal_enabled = false
+script = ExtResource( 2 )
+use_relative = true
+
+[node name="QuestContainer" type="VBoxContainer" parent="Control/DrawerContainer/VBoxContainer/ScrollContainer"]
+margin_right = 600.0
+rect_min_size = Vector2( 600, 0 )
+mouse_filter = 2
+custom_constants/separation = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/display = SubResource( 3 )
+anims/hide = SubResource( 14 )
+
+[connection signal="gui_input" from="Control/Mask" to="." method="_on_Mask_gui_input"]
