@@ -7,10 +7,22 @@ signal shop_changed(value)
 signal tap_value_changed(value)
 signal idle_value_changed(value)
 signal ipm_changed(value)
+signal achievement_updated(value)
 
-var data = {
+
+const ON_TAP_ACHIVEMENT = "ON_TAP_ACHIVEMENT"
+const ON_BUY_TOOL_ACHIEVEMENT = "ON_BUY_TOOL_ACHIEVEMENT"
+const ON_BUY_FOOD_ACHIEVEMENT = "ON_BUY_FOOD_ACHIEVEMENT"
+const ON_UPGRADE_TOOL_ACHIEVEMENT = "ON_UPGRADE_TOOL_ACHIEVEMENT"
+const ON_UPGRADE_FOOD_ACHIEVEMENT = "ON_UPGRADE_FOOD_ACHIEVEMENT"
+const ON_INCOME_ACHIEVEMENT = "ON_INCOME_ACHIEVEMENT"
+
+var can_tap = true
+
+var default_data = {
 	"currency" : {
 		"money" : 0,
+		"gem" : 0,
 		"tap_value" : 1,
 		"idle_value" : 1,
 		"ipm" : 1
@@ -141,8 +153,83 @@ var data = {
 			"name" : "shop_5"
 		}
 		]
+	},
+	"achievements" : [
+		{
+			"type" : ON_TAP_ACHIVEMENT,
+			"name" : "Enterpreuneur",
+			"description" : "Player melakukan tap sebanyak %s kali dalam game." % 10000,
+			"reward" : 50,
+			"value" : 10000,
+			"unlocked" : false,
+			"redemeed" : false
+		},
+		{
+			"type" : ON_BUY_TOOL_ACHIEVEMENT,
+			"name" : "Mari memasak",
+			"description" : "Player membeli %s peralatan masak." % 3,
+			"reward" : 50,
+			"value" : 3,
+			"unlocked" : false,
+			"redemeed" : false
+		},
+	],
+	"misc" : {
+		"total_tap_pressed" : 0,
+		"total_income" : 0,
+		"tool_bought" : 0,
+		"food_bought" : 0,
+		"tool_upgraded" : 0,
+		"food_upgraded" : 0
 	}
 }
+
+func check_achievement(type : String) -> void:
+	for achievement in data['achievements']:
+		if achievement['type'] == type and not achievement['unlocked']:
+			match(type):
+				ON_TAP_ACHIVEMENT:
+					if data['misc']['total_tap_pressed'] >= achievement['value']:
+						achievement['unlocked'] = true
+				ON_BUY_FOOD_ACHIEVEMENT:
+					if data['misc']['food_bought'] >= achievement['value']:
+						achievement['unlocked'] = true
+				ON_BUY_TOOL_ACHIEVEMENT:
+					if data['misc']['tool_bought'] >= achievement['value']:
+						achievement['unlocked'] = true
+				ON_UPGRADE_FOOD_ACHIEVEMENT:
+					if data['misc']['food_upgraded'] >= achievement['value']:
+						achievement['unlocked'] = true
+				ON_UPGRADE_TOOL_ACHIEVEMENT:
+					if data['misc']['tool_upgraded'] >= achievement['value']:
+						achievement['unlocked'] = true
+				ON_INCOME_ACHIEVEMENT:
+					if data['misc']['total_income'] >= achievement['value']:
+						achievement['unlocked'] = true
+						
+			emit_signal("achievement_updated", achievement)
+
+func redeem_gem_reward(achievement_name : String, value : int) -> void:
+	for achievement in data['achievements']:
+		if achievement['name'] == achievement_name:
+			var current_gems = data['currency']['gems']
+			current_gems += value
+			set_gems(current_gems)
+			achievement['redeemed'] = true
+
+func redeem_coin_reward(achievement_name : String, value : int) -> void:
+	for achievement in data['achievements']:
+		if achievement['name'] == achievement_name:
+			var current_gems = data['currency']['money']
+			current_gems += value
+			set_gems(current_gems)
+			achievement['redeemed'] = true
+
+
+func set_gems(value) -> void:
+	data['currency']['gems'] = value
+
+var data = default_data
 
 func _ready():
 	get_tree().set_auto_accept_quit(false)
@@ -243,3 +330,10 @@ func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
 		SaveManager.save(SaveManager.save_file, data)
 		EventManager.emit_signal("quit_pop_up")
+	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+		SaveManager.save(SaveManager.save_file, data)
+		EventManager.emit_signal("quit_pop_up")
+
+
+func reset() -> void:
+	data = default_data

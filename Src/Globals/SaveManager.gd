@@ -19,3 +19,9 @@ func load_save(file_name : String) -> void:
 func delete_save(file_name : String) -> void:
 	if dir.dir_exists(save_file):
 		dir.remove(save_file)
+
+
+func reset_game() -> void:
+	delete_save(save_file)
+	DataManager.reset()
+	get_tree().reload_current_scene()

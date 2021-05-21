@@ -29,8 +29,7 @@ func _on_Bgm_pressed():
 
 func _on_ResetData_pressed():
 	SoundManager.play_sfx("click")
-
-	## todo
+	EventManager.emit_signal("show_general_pop_up", "All saved progress will be lost!", "reset_game")
 
 	pass
 
@@ -38,6 +37,7 @@ func _on_ResetData_pressed():
 func _on_Back_pressed():
 	control.visible = false
 	SoundManager.play_sfx("click")
+	DataManager.can_tap = true
 
 
 func update_button_modulate_state():

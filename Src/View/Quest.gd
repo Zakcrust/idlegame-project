@@ -18,3 +18,4 @@ func display():
 func _on_Mask_gui_input(event):
 	if event is InputEventMouseButton and $Control/Mask.modulate.a8 == 70:
 		$AnimationPlayer.play("hide")
+		DataManager.can_tap = true
