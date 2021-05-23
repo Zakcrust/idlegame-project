@@ -53,6 +53,7 @@ DataManager="*res://Src/Globals/DataManager.gd"
 EventManager="*res://Src/Globals/EventManager.gd"
 SoundManager="*res://Src/Globals/SoundManager.tscn"
 ConfigManager="*res://Src/Globals/ConfigManager.gd"
+AssetDictionary="*res://Src/Globals/AssetDictionary.gd"
 
 [display]
 
