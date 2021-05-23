@@ -15,6 +15,7 @@ func _ready():
 	money = DataManager.get_money()
 	DataManager.connect("idle_value_changed", self, "set_idle_income")
 	DataManager.connect("tap_value_changed", self, "set_tap_income")
+	DataManager.can_tap = true
 	
 	SoundManager.update_bgm_state()
 
