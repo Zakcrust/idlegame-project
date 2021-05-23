@@ -181,12 +181,16 @@ var default_data = {
 		"food_bought" : 0,
 		"tool_upgraded" : 0,
 		"food_upgraded" : 0
-	}
+	},
+	"last_save_timestamp" : 0
 }
 var data
 
 func _ready():
 	get_tree().set_auto_accept_quit(false)
+	if not data["last_save_timestamp"] == 0:
+		calculate_passive_income()
+		SaveManager.save_data(data)
 
 
 func check_achievement(type : String) -> void:
@@ -346,3 +350,19 @@ func _notification(what):
 
 func reset_default_data() -> void:
 	data = default_data.duplicate(true)
+
+
+func calculate_passive_income() -> void:
+	var time_start = data["last_save_timestamp"]
+	var time_now = OS.get_unix_time()
+	var elapsed = time_now - time_start
+	var minutes = elapsed / 60
+	var seconds = int(elapsed) % 60
+	
+	var str_elapsed = "%02d : %02d" % [minutes, seconds]
+	print("Last save elapsed : %s (%.2f minutes)" % [str_elapsed, minutes])
+	
+	var total_passive_income = floor(minutes * data["currency"]["ipm"])
+	print("Total passive income : ", total_passive_income)
+	
+	data["currency"]["money"] += total_passive_income

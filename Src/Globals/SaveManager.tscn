@@ -10,8 +10,11 @@ var file : File = File.new()
 
 
 func _ready():
-	wait_time = AUTOSAVE_SECONDS_DELAY
+	# uncomment this if something went wrong
+#	reset_default_data()
+	
 	load_data()
+	wait_time = AUTOSAVE_SECONDS_DELAY
 
 
 func save_data(data: Dictionary) -> void:
@@ -21,6 +24,10 @@ func save_data(data: Dictionary) -> void:
 		print(\"Save data error\")
 		reset_default_data()
 		return
+	
+	# for calculating passive income
+	data[\"last_save_timestamp\"] = OS.get_unix_time()
+	
 	file.store_line(to_json(data))
 	file.close()
 	
