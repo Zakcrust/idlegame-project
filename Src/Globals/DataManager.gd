@@ -183,6 +183,11 @@ var default_data = {
 		"food_upgraded" : 0
 	}
 }
+var data
+
+func _ready():
+	get_tree().set_auto_accept_quit(false)
+
 
 func check_achievement(type : String) -> void:
 	for achievement in data['achievements']:
@@ -209,6 +214,7 @@ func check_achievement(type : String) -> void:
 						
 			emit_signal("achievement_updated", achievement)
 
+
 func redeem_gem_reward(achievement_name : String, value : int) -> void:
 	for achievement in data['achievements']:
 		if achievement['name'] == achievement_name:
@@ -216,6 +222,7 @@ func redeem_gem_reward(achievement_name : String, value : int) -> void:
 			current_gems += value
 			set_gems(current_gems)
 			achievement['redeemed'] = true
+
 
 func redeem_coin_reward(achievement_name : String, value : int) -> void:
 	for achievement in data['achievements']:
@@ -229,11 +236,6 @@ func redeem_coin_reward(achievement_name : String, value : int) -> void:
 func set_gems(value) -> void:
 	data['currency']['gems'] = value
 
-var data = default_data
-
-func _ready():
-	get_tree().set_auto_accept_quit(false)
-	SaveManager.load_save(SaveManager.save_file)
 
 func set_ipm(value) -> void:
 	data['currency']['ipm'] = value
@@ -243,6 +245,7 @@ func set_ipm(value) -> void:
 func get_ipm() -> int:
 	return data['currency']['ipm']
 
+
 func set_idle_value(value) -> void:
 	data['currency']['idle_value'] = value
 	emit_signal("idle_value_changed", value)
@@ -251,11 +254,12 @@ func set_idle_value(value) -> void:
 func get_idle_value() -> int:
 	return data['currency']['idle_value']
 
+
 func set_tap_value(value) -> void:
 	data['currency']['tap_value'] = value
 	emit_signal("tap_value_changed", value)
-	
-	
+
+
 func get_tap_value() -> int:
 	return data['currency']['tap_value']
 
@@ -264,15 +268,19 @@ func set_money(value) -> void:
 	data["currency"]["money"] = value
 	emit_signal("money_changed", value)
 
+
 func get_money() -> int:
 	return data["currency"]["money"]
+
 
 func set_shop_instance(instance) -> void:
 	data['shop']['instance'] = instance
 	emit_signal("shop_changed", instance)
 
+
 func get_shop_instance():
 	return data['shop']['instance']
+
 
 func buy_item(item_name) -> void:
 	var selected_item = null
@@ -326,14 +334,15 @@ func get_items(type, shop_name) -> Array:
 			result.append(item)
 	return result
 
+
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
-		SaveManager.save(SaveManager.save_file, data)
+		SaveManager.save(data)
 		EventManager.emit_signal("quit_pop_up")
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
-		SaveManager.save(SaveManager.save_file, data)
+		SaveManager.save(data)
 		EventManager.emit_signal("quit_pop_up")
 
 
-func reset() -> void:
-	data = default_data
+func reset_default_data() -> void:
+	data = default_data.duplicate(true)
