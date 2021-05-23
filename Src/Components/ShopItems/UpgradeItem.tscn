@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/Font/DINRoundPro-Black.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Src/Components/ShopItems/UpgradeItem.gd" type="Script" id=3]
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.556863, 0.603922, 0.741176, 1 )
 corner_radius_top_left = 20
 corner_radius_top_right = 20
@@ -57,7 +57,7 @@ margin_right = 150.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 150, 150 )
 mouse_filter = 2
-custom_styles/panel = SubResource( 6 )
+custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
