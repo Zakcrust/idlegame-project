@@ -8,6 +8,7 @@ var tap_value : int  = 0
 var idle_income : int = 1
 var money : int
 
+
 func _ready():
 	tap_value = DataManager.get_tap_value()
 	idle_income = DataManager.get_idle_value()
@@ -15,10 +16,8 @@ func _ready():
 	DataManager.connect("idle_value_changed", self, "set_idle_income")
 	DataManager.connect("tap_value_changed", self, "set_tap_income")
 	
-	if ConfigManager.is_bgm_on():
-		SoundManager.resume_bgm()
-	else:
-		SoundManager.pause_bgm()
+	SoundManager.update_bgm_state()
+
 
 func set_tap_income(value) -> void:
 	tap_value = value
@@ -27,12 +26,15 @@ func set_tap_income(value) -> void:
 func set_idle_income(value) -> void:
 	idle_income = value
 
+
 func _input(event):
 	if event is InputEventMouseButton and DataManager.can_tap:
-			if event.pressed:
-				if event.position.y > 300 and event.position.y < 1200:
-					generate_coins(event.position)
-					registered_tap += 1
+		if event.pressed:
+			if event.position.y > 300 and event.position.y < 1200:
+				generate_coins(event.position)
+				registered_tap += 1
+				SoundManager.play_sfx("coin")
+
 
 func update_money(value) -> void:
 	pass

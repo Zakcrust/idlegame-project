@@ -11,20 +11,15 @@ func _ready():
 
 
 func _on_Sfx_pressed():
-	ConfigManager.toggle_sfx()
+	SoundManager.toggle_sfx()
 	SoundManager.play_sfx("click")
 	update_button_modulate_state()
 
 
 func _on_Bgm_pressed():
-	ConfigManager.toggle_bgm()
+	SoundManager.toggle_bgm()
 	SoundManager.play_sfx("click")
 	update_button_modulate_state()
-	
-	if ConfigManager.is_bgm_on():
-		SoundManager.play_bgm("default")
-	else:
-		SoundManager.pause_bgm()
 
 
 func _on_ResetData_pressed():
@@ -41,8 +36,8 @@ func _on_Back_pressed():
 
 
 func update_button_modulate_state():
-	sfx.modulate = "ffffff" if ConfigManager.is_sfx_on() else "d6d6d6"
-	bgm.modulate = "ffffff" if ConfigManager.is_bgm_on() else "d6d6d6"
+	sfx.modulate = "ffffff" if SoundManager.is_sfx_on() else "d6d6d6"
+	bgm.modulate = "ffffff" if SoundManager.is_bgm_on() else "d6d6d6"
 
 
 func display():
