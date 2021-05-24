@@ -15,11 +15,11 @@ func _ready():
 
 
 func set_income(value) -> void:
-	$Bar/Title.text = "Rp. %s" % value
+	$Bar/Title.text = " %s" % value
 
 
 func set_ipm_view(value) -> void:
-	$IncomeContainer/VBoxContainer/Income.text = "Rp. %s /menit" % value
+	$IncomeContainer/VBoxContainer/Income.text = "%s /menit" % value
 
 
 func _on_DebugMoney_pressed():

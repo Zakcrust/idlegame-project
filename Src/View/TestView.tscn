@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Src/View/TestView.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Background/ecc46dfd631e832dec19493d9fa4fe7f.jpg" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Src/Components/QuitPopUp/QuitPopUp.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Src/Components/GeneralPopUp/GeneralPopUp.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Src/Components/Message/Message.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Sprites/Background/bg full.png" type="Texture" id=11]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -18,7 +19,12 @@ region = Rect2( 209.008, 94.9424, 268.105, 398.745 )
 [node name="City" type="Node2D"]
 script = ExtResource( 1 )
 
+[node name="bg full" type="Sprite" parent="."]
+position = Vector2( 300, 720 )
+texture = ExtResource( 11 )
+
 [node name="background" type="Sprite" parent="."]
+visible = false
 position = Vector2( 291.178, 661.371 )
 scale = Vector2( 2.45748, 3.89436 )
 texture = SubResource( 1 )

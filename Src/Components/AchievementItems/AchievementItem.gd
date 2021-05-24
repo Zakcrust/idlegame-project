@@ -56,7 +56,7 @@ func init_achievement_item(achievement) -> void:
 func update_item() -> void:
 	if redeemed:
 		unlocked = false
-		$HBoxContainer/CenterContainer/Reward/VBoxContainer/Title.text = "Completed"
+		$HBoxContainer/CenterContainer2/Reward/VBoxContainer/Title.text = "Completed"
 
 func _on_Reward_gui_input(event):
 	if event is InputEventMouseButton:
