@@ -24,7 +24,7 @@ func init_achievement_item(achievement) -> void:
 	
 	$HBoxContainer/Labels/Name.text = achievement_name
 	$HBoxContainer/Labels/Description.text = achievement_description
-	$HBoxContainer/Reward/VBoxContainer/Value.text = str(achievement_reward)
+	$HBoxContainer/CenterContainer2/Reward/VBoxContainer/Value.text = str(achievement_reward)
 	
 	match(achievement['type']):
 		DataManager.ON_TAP_ACHIVEMENT:
@@ -48,7 +48,7 @@ func init_achievement_item(achievement) -> void:
 		$HBoxContainer/Labels/ProgressBar.value = progress_value
 		
 	if redeemed:
-		$HBoxContainer/Reward/VBoxContainer/Title.text = "Completed"
+		$HBoxContainer/CenterContainer2/Reward/VBoxContainer/Title.text = "Completed"
 	
 	
 	self.rect_size = $HBoxContainer.rect_size
@@ -56,7 +56,7 @@ func init_achievement_item(achievement) -> void:
 func update_item() -> void:
 	if redeemed:
 		unlocked = false
-		$HBoxContainer/Reward/VBoxContainer/Title.text = "Completed"
+		$HBoxContainer/CenterContainer/Reward/VBoxContainer/Title.text = "Completed"
 
 func _on_Reward_gui_input(event):
 	if event is InputEventMouseButton:
