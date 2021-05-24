@@ -11,4 +11,4 @@ signal hide_input_mask(value)
 signal reset_game()
 
 func _ready():
-	connect("reset_game", SaveManager, "reset_game")
+	connect("reset_game", SaveManager, "reset_default_data")

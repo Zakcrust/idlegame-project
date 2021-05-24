@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Cabe Lvl 1.png-734b3b53e6e9d2507b16138356ffd286.stex"
+path="res://.import/cabe_level_3.png-7ffd8fd083c0538719141ff4d182d0d5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Item/Cabe Lvl 1.png"
-dest_files=[ "res://.import/Cabe Lvl 1.png-734b3b53e6e9d2507b16138356ffd286.stex" ]
+source_file="res://Assets/Sprites/Ingredient/cabe_level_3.png"
+dest_files=[ "res://.import/cabe_level_3.png-7ffd8fd083c0538719141ff4d182d0d5.stex" ]
 
 [params]
 

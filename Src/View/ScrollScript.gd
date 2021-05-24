@@ -11,7 +11,6 @@ class_name ScrollScript
 
 export (Vector2) var delta_for_swipe := Vector2(8, 8) 
 
-var upgrade_item_scene = preload("res://Src/Components/ShopItems/UpgradeItem.tscn")
 
 var look_for_swipe := false
 var swiping := false
@@ -20,45 +19,6 @@ var swipe_mouse_start : Vector2
 var swipe_mouse_times := []
 var swipe_mouse_positions := []
 var tween : Tween
-
-func _ready():
-	load_items("tool")
-	load_items("ingredient")
-	DataManager.connect("item_bought", self, "update_item")
-
-func update_item(status, item) -> void:
-	if status == DataStatus.ERROR:
-		EventManager.emit_signal("show_message", "Error has occured", "ERROR")
-		EventManager.emit_signal("show_pop_up", "Error has occured")
-	elif status == DataStatus.INSUFFICIENT_MONEY:
-		EventManager.emit_signal("show_message", "Insufficient money", "ERROR")
-		EventManager.emit_signal("show_pop_up", "Insufficient money")
-	elif status == DataStatus.SUCCESS:
-		for child in $UpgradeContainer.get_children():
-			if child.item_name == item['item_name']:
-				child.item_level = item['level']
-				child.item_price = item['price']
-				if item['level'] >= item['max_level']:
-					child.max_buy()
-				return
-	
-
-func load_items(group) -> void:
-	var shop_instance = DataManager.get_shop_instance()
-	var data = DataManager.get_items(group, shop_instance.shop_name)
-	var upgrade_item
-	for item in data:
-		upgrade_item = upgrade_item_scene.instance()
-		upgrade_item.set_item(item)
-		$UpgradeContainer.add_child(upgrade_item)
-		upgrade_item.add_to_group(group)
-
-func show_items(group) -> void:
-	for child in $UpgradeContainer.get_children():
-		if child.is_in_group(group):
-			child.show()
-		else:
-			child.hide()
 
 
 func _input(ev) -> void:

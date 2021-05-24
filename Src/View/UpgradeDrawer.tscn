@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Font/DINRoundPro-Black.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Src/View/ScrollScript.gd" type="Script" id=2]
+[ext_resource path="res://Src/Utils/ScrollContainerScript.gd" type="Script" id=2]
 [ext_resource path="res://Src/View/UpgradeDrawer.gd" type="Script" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -290,6 +290,7 @@ margin_bottom = 1074.0
 rect_min_size = Vector2( 0, 1000 )
 scroll_horizontal_enabled = false
 script = ExtResource( 2 )
+use_relative = true
 
 [node name="UpgradeContainer" type="VBoxContainer" parent="DrawerContainer/VBoxContainer/ScrollContainer"]
 margin_right = 600.0

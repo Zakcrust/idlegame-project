@@ -1,0 +1,73 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Timer
+
+const AUTOSAVE_SECONDS_DELAY = 15
+const SAVE_FILE_NAME = \"user://save_data.save\"
+var dir : Directory = Directory.new()
+var file : File = File.new()
+
+
+func _ready():
+	# uncomment this if something went wrong
+	reset_default_data()
+	
+	load_data()
+	wait_time = AUTOSAVE_SECONDS_DELAY
+
+
+func save_data(data: Dictionary) -> void:
+	print(\"Saving data...\")
+	var err = file.open(SAVE_FILE_NAME, File.WRITE)
+	if err != OK:
+		print(\"Save data error\")
+		reset_default_data()
+		return
+	
+	# for calculating passive income
+	data[\"last_save_timestamp\"] = OS.get_unix_time()
+	
+	file.store_line(to_json(data))
+	file.close()
+	
+	# reset autosave timer
+	start()
+
+
+func load_data() -> void:
+	print(\"loading data...\")
+	var err = file.open(SAVE_FILE_NAME, File.READ)
+	if err != OK:
+		print(\"Load data error\")
+		reset_default_data()
+	else:
+		var data = file.get_as_text()
+		DataManager.data = parse_json(data)
+	file.close()
+
+
+func reset_default_data() -> void:
+	print(\"Resetting data...\")
+	if dir.dir_exists(SAVE_FILE_NAME):
+		dir.remove(SAVE_FILE_NAME)
+	
+	DataManager.reset_default_data()
+	
+	save_data(DataManager.data)
+	
+	get_tree().reload_current_scene()
+
+
+func _on_SaveManager_timeout():
+	print(\"Autosave data\")
+	var data = DataManager.data
+	save_data(data)
+"
+
+[node name="SaveManager" type="Timer"]
+wait_time = 15.0
+autostart = true
+script = SubResource( 1 )
+
+[connection signal="timeout" from="." to="." method="_on_SaveManager_timeout"]
