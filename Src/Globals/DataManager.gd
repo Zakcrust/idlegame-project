@@ -22,7 +22,7 @@ var can_tap = true
 var default_data = {
 	"currency" : {
 		"money" : 0,
-		"gem" : 0,
+		"gems" : 0,
 		"tap_value" : 1,
 		"idle_value" : 1,
 		"ipm" : 1
@@ -158,20 +158,20 @@ var default_data = {
 		{
 			"type" : ON_TAP_ACHIVEMENT,
 			"name" : "Enterpreuneur",
-			"description" : "Player melakukan tap sebanyak %s kali dalam game." % 10000,
+			"description" : "lakukan tap sebanyak %s kali dalam game." % 100,
 			"reward" : 50,
-			"value" : 10000,
+			"value" : 100,
 			"unlocked" : false,
-			"redemeed" : false
+			"redeemed" : false
 		},
 		{
 			"type" : ON_BUY_TOOL_ACHIEVEMENT,
 			"name" : "Mari memasak",
-			"description" : "Player membeli %s peralatan masak." % 3,
+			"description" : "beli %s peralatan masak." % 3,
 			"reward" : 50,
 			"value" : 3,
 			"unlocked" : false,
-			"redemeed" : false
+			"redeemed" : false
 		},
 	],
 	"misc" : {
@@ -186,6 +186,9 @@ var default_data = {
 }
 var data
 
+func add_tap() -> void:
+	data['misc']['total_tap_pressed'] += 1
+
 func _ready():
 	get_tree().set_auto_accept_quit(false)
 	if not data["last_save_timestamp"] == 0:
@@ -195,7 +198,8 @@ func _ready():
 
 func check_achievement(type : String) -> void:
 	for achievement in data['achievements']:
-		if achievement['type'] == type and not achievement['unlocked']:
+		if achievement['type'] == type and not achievement['unlocked'] and not achievement['redeemed']:
+			print(achievement['value'])
 			match(type):
 				ON_TAP_ACHIVEMENT:
 					if data['misc']['total_tap_pressed'] >= achievement['value']:
@@ -216,23 +220,27 @@ func check_achievement(type : String) -> void:
 					if data['misc']['total_income'] >= achievement['value']:
 						achievement['unlocked'] = true
 						
+			if achievement['unlocked']:
+				print("showing message...")
+				EventManager.emit_signal("show_message", 'Achivement unlocked : %s' % achievement['name'])
+			
 			emit_signal("achievement_updated", achievement)
 
 
-func redeem_gem_reward(achievement_name : String, value : int) -> void:
+func redeem_gem_reward(achievement_name : String) -> void:
 	for achievement in data['achievements']:
 		if achievement['name'] == achievement_name:
 			var current_gems = data['currency']['gems']
-			current_gems += value
+			current_gems += achievement['reward']
 			set_gems(current_gems)
 			achievement['redeemed'] = true
 
 
-func redeem_coin_reward(achievement_name : String, value : int) -> void:
+func redeem_coin_reward(achievement_name : String) -> void:
 	for achievement in data['achievements']:
 		if achievement['name'] == achievement_name:
 			var current_gems = data['currency']['money']
-			current_gems += value
+			current_gems += achievement['reward']
 			set_gems(current_gems)
 			achievement['redeemed'] = true
 
@@ -309,6 +317,23 @@ func buy_item(item_name) -> void:
 	var new_currency = data['currency']['money'] - selected_item['price']
 	set_money(new_currency)
 	
+	if selected_item['level'] == 1:
+		match(selected_item['type']):
+			'ingredient':
+				data['misc']['food_bought'] += 1
+				check_achievement(DataManager.ON_BUY_FOOD_ACHIEVEMENT)
+			'tool':
+				data['misc']['tool_bought'] += 1
+				check_achievement(DataManager.ON_BUY_TOOL_ACHIEVEMENT)
+	else:
+		match(selected_item['type']):
+			'ingredient':
+				data['misc']['food_upgraded'] += 1
+				check_achievement(DataManager.ON_UPGRADE_FOOD_ACHIEVEMENT)
+			'tool':
+				data['misc']['tool_upgraded'] += 1
+				check_achievement(DataManager.ON_UPGRADE_TOOL_ACHIEVEMENT)
+	
 	selected_item['effect_value'] = floor(selected_item['effect_value'] * selected_item['effect_multiplier'])
 	selected_item['level'] += 1
 	selected_item['price'] *= selected_item['price_multiplier']
@@ -350,6 +375,7 @@ func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 		SaveManager.save_data(data)
 		EventManager.emit_signal("quit_pop_up")
+
 
 
 func reset_default_data() -> void:

@@ -11,14 +11,15 @@ func _ready():
 	achievements = DataManager.data['achievements']
 	for achievement in achievements:
 		var item = achievement_item_scene.instance()
-		item.init_achivement_item(achievement)
+		item.init_achievement_item(achievement)
 		container.add_child(item)
 
 
 func update_achievement(value) -> void:
 	for child in container.get_children():
 		if child.achievement_name == value['name']:
-			child.unlocked = true
+			child.init_achievement_item(value)
+			print("achievement updated")
 
 
 func display():

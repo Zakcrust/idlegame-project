@@ -7,7 +7,6 @@ func _ready():
 func show_pop_up(message) -> void:
 	$ColorRect/Label.text = message
 	get_tree().paused = true
-	show()
 	popup_centered()
 
 

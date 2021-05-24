@@ -50,6 +50,8 @@ func generate_coins(coin_pos : Vector2) -> void:
 	money = DataManager.get_money()
 	money += tap_value
 	DataManager.set_money(money)
+	DataManager.add_tap()
+	DataManager.check_achievement(DataManager.ON_TAP_ACHIVEMENT)
 	add_child(tap)
 
 

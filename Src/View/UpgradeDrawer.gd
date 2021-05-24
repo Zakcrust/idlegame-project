@@ -15,10 +15,10 @@ func _ready():
 
 func update_item(status, item) -> void:
 	if status == DataStatus.ERROR:
-		EventManager.emit_signal("show_message", "Error has occured", "ERROR")
+#		EventManager.emit_signal("show_message", "Error has occured", "ERROR")
 		EventManager.emit_signal("show_pop_up", "Error has occured")
 	elif status == DataStatus.INSUFFICIENT_MONEY:
-		EventManager.emit_signal("show_message", "Insufficient money", "ERROR")
+#		EventManager.emit_signal("show_message", "Insufficient money", "ERROR")
 		EventManager.emit_signal("show_pop_up", "Insufficient money")
 	elif status == DataStatus.SUCCESS:
 		for child in upgrade_container.get_children():

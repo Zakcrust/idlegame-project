@@ -1,7 +1,7 @@
 extends Control
 
-#func _ready():
-#	EventManager.connect("show_message", self, "set_message")
+func _ready():
+	EventManager.connect("show_message", self, "set_message")
 
 func set_message(message, status = "SUCCESS") -> void:
 	if status == "ERROR":

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Src/View/TestView.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Background/ecc46dfd631e832dec19493d9fa4fe7f.jpg" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Src/Components/PopUp/PopUp.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Src/Components/QuitPopUp/QuitPopUp.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Src/Components/GeneralPopUp/GeneralPopUp.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Src/Components/Message/Message.tscn" type="PackedScene" id=10]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -44,6 +45,8 @@ visible = false
 [node name="QuitPopUp" parent="GameUI" instance=ExtResource( 8 )]
 
 [node name="GeneralPopUp" parent="GameUI" instance=ExtResource( 9 )]
+
+[node name="Message2" parent="GameUI" instance=ExtResource( 10 )]
 
 [node name="IdleTimer" type="Timer" parent="."]
 wait_time = 5.0
