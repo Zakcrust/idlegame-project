@@ -339,12 +339,16 @@ func get_items(type, shop_name) -> Array:
 	return result
 
 
+func get_last_autosave_time() -> int:
+	return data["last_save_timestamp"]
+
+
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
-		SaveManager.save(data)
+		SaveManager.save_data(data)
 		EventManager.emit_signal("quit_pop_up")
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
-		SaveManager.save(data)
+		SaveManager.save_data(data)
 		EventManager.emit_signal("quit_pop_up")
 
 

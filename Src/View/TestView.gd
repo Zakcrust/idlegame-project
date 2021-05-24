@@ -35,6 +35,8 @@ func _input(event):
 				generate_coins(event.position)
 				registered_tap += 1
 				SoundManager.play_sfx("coin")
+				
+				DebugStats.update_total_tap()
 
 
 func update_money(value) -> void:

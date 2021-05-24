@@ -11,7 +11,7 @@ var file : File = File.new()
 
 func _ready():
 	# uncomment this if something went wrong
-	reset_default_data()
+#	reset_default_data()
 	
 	load_data()
 	wait_time = AUTOSAVE_SECONDS_DELAY
@@ -54,6 +54,8 @@ func reset_default_data() -> void:
 	
 	DataManager.reset_default_data()
 	
+	DebugStats.reset_stats()
+	
 	save_data(DataManager.data)
 	
 	get_tree().reload_current_scene()
@@ -63,10 +65,12 @@ func _on_SaveManager_timeout():
 	print(\"Autosave data\")
 	var data = DataManager.data
 	save_data(data)
+	
+	DebugStats.update_last_autosave()
 "
 
 [node name="SaveManager" type="Timer"]
-wait_time = 15.0
+wait_time = 10.0
 autostart = true
 script = SubResource( 1 )
 
