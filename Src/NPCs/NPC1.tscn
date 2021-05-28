@@ -1,78 +1,38 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://Assets/Sprites/NPC/3 Cyborg/Cyborg_idle.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Sprites/NPC/3 Cyborg/Cyborg_run.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/NPC/AnakSMA/walk_0.tres" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/NPC/AnakSMA/walk_2.tres" type="Texture" id=2]
 [ext_resource path="res://Src/NPCs/NPC1.gd" type="Script" id=3]
 [ext_resource path="res://Src/Utils/FiniteStateMachine.gd" type="Script" id=4]
 [ext_resource path="res://Src/NPCs/Types/Customer.gd" type="Script" id=5]
 [ext_resource path="res://Src/NPCs/Types/Passby.gd" type="Script" id=6]
 [ext_resource path="res://Src/NPCs/State/Move.gd" type="Script" id=7]
 [ext_resource path="res://Src/NPCs/State/Idle.gd" type="Script" id=8]
+[ext_resource path="res://Assets/Sprites/NPC/AnakSMA/walk_1.tres" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/NPC/AnakSMA/walk_bought_2.tres" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/NPC/AnakSMA/walk_bought_0.tres" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/NPC/AnakSMA/walk_bought_1.tres" type="Texture" id=12]
+[ext_resource path="res://Src/NPCs/State/MoveBought.gd" type="Script" id=13]
 
-[sub_resource type="AtlasTexture" id=1]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=2]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 48, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 96, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=4]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 144, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=5]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=6]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 48, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 96, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 144, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=9]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 192, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=10]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 240, 0, 48, 48 )
-
-[sub_resource type="SpriteFrames" id=11]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"frames": [ ExtResource( 1 ), ExtResource( 9 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "walk",
-"speed": 5.0
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "walk_bought",
+"speed": 6.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=12]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 16.3653
 height = 49.4061
 
@@ -82,15 +42,16 @@ height = 49.4061
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 3, 3 )
-frames = SubResource( 11 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
 animation = "walk"
-frame = 5
+frame = 2
 playing = true
 offset = Vector2( 10, -5 )
+flip_h = true
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-shape = SubResource( 12 )
+shape = SubResource( 2 )
 
 [node name="Role" type="Node" parent="."]
 script = ExtResource( 4 )
@@ -100,6 +61,9 @@ script = ExtResource( 5 )
 
 [node name="Move" type="Node" parent="Role/Customer"]
 script = ExtResource( 7 )
+
+[node name="MoveBought" type="Node" parent="Role/Customer"]
+script = ExtResource( 13 )
 
 [node name="Idle" type="Node" parent="Role/Customer"]
 script = ExtResource( 8 )

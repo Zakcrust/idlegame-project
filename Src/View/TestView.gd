@@ -29,14 +29,15 @@ func set_idle_income(value) -> void:
 
 
 func _input(event):
-	if event is InputEventMouseButton and DataManager.can_tap:
+	if event is InputEventScreenTouch and DataManager.can_tap:
 		if event.pressed:
-			if event.position.y > 300 and event.position.y < 1200:
-				generate_coins(event.position)
-				registered_tap += 1
-				SoundManager.play_sfx("coin")
-				
-				DebugStats.update_total_tap()
+			if event.index <= 3:
+				if event.position.y > 300 and event.position.y < 1200:
+					generate_coins(event.position)
+					registered_tap += 1
+					SoundManager.play_sfx("coin")
+					
+					DebugStats.update_total_tap()
 
 
 func update_money(value) -> void:

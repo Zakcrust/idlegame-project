@@ -60,7 +60,7 @@ func check_game_shop() -> void:
 		change_to("Idle")
 		yield(get_tree().create_timer(1.0),"timeout")
 		action_done = true
-		change_to("Move")
+		change_to("MoveBought")
 		
 
 func process(delta):
