@@ -25,6 +25,7 @@ func update_item(status, item) -> void:
 			if child.item_name == item['item_name']:
 				child.item_level = item['level']
 				child.item_price = item['price']
+				child.update_description(item['description'] % item['effect_value'])
 				child.update_item_icon()
 				if item['level'] >= item['max_level']:
 					child.max_buy()

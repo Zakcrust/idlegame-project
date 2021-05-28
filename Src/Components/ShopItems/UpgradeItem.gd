@@ -25,10 +25,14 @@ func set_item(item) -> void:
 	$HBoxContainer/Labels/Name.text = item_name
 	$HBoxContainer/Labels/Level.text = "Level %s" % item_level
 	$HBoxContainer/Labels/Price.text = "Rp. %s" % item_price
+	update_description(item['description'] % item['effect_value'])
 	update_item_icon()
 	
 	if item['level'] >= item['max_level']:
 		max_buy()
+
+func update_description(desc) -> void:
+	$HBoxContainer/Labels/Desc.text = desc
 
 
 func buy_item() -> void:

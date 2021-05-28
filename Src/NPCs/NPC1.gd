@@ -12,8 +12,8 @@ var role = ""
 
 
 var init_positions = {
-	"left" : Vector2(-100,1200),
-	"right" : Vector2(700,1200)
+	"left" : Vector2(-100,1100),
+	"right" : Vector2(700,1100)
 }
 
 var rand_num : float = 0.0

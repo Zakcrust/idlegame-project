@@ -42,13 +42,14 @@ var default_data = {
 				"type" : "tool",
 				"item_name" : "Kompor",
 				"level" : 1,
-				"price" : 2000,
+				"price" : 50,
 				"price_multiplier" : 1.07,
 				"unlocked" : true,
 				"effect" : EffectStatus.IDLE_INCOME,
 				"effect_value" : 2,
-				"effect_multiplier" : 2.5,
-				"max_level" : 10
+				"effect_multiplier" : 2,
+				"max_level" : 10,
+				"description" : "pendapatan per menit  +%s koin"
 			},
 			{
 				"item_required" : {
@@ -59,13 +60,14 @@ var default_data = {
 				"type" : "tool",
 				"item_name" : "Wajan",
 				"level" : 1,
-				"price" : 3000,
+				"price" : 150,
 				"price_multiplier" : 1.07,
 				"unlocked" : true,
 				"effect" : EffectStatus.IDLE_INCOME,
 				"effect_value" : 6,
-				"effect_multiplier" : 1.5,
-				"max_level" : 10
+				"effect_multiplier" : 2,
+				"max_level" : 10,
+				"description" : "pendapatan per menit  +%s koin"
 			},
 			{
 				"item_required" : {
@@ -76,13 +78,14 @@ var default_data = {
 				"type" : "tool",
 				"item_name" : "Spatula",
 				"level" : 1,
-				"price" : 4000,
+				"price" : 500,
 				"price_multiplier" : 1.07,
 				"unlocked" : true,
 				"effect" : EffectStatus.IDLE_INCOME,
 				"effect_value" : 2,
-				"effect_multiplier" : 1.3,
-				"max_level" : 10
+				"effect_multiplier" : 2,
+				"max_level" : 10,
+				"description" : "pendapatan per menit  +%s koin"
 			},
 			{
 				"item_required" : {
@@ -93,13 +96,14 @@ var default_data = {
 				"type" : "ingredient",
 				"item_name" : "Daging Ayam",
 				"level" : 1,
-				"price" : 10000,
+				"price" : 50,
 				"price_multiplier" : 1.07,
 				"unlocked" : true,
 				"effect" : EffectStatus.TAP_INCOME,
 				"effect_value" : 4,
-				"effect_multiplier" : 2.5,
-				"max_level" : 10
+				"effect_multiplier" : 2,
+				"max_level" : 10,
+				"description" : "penjualan  +%s koin"
 			},
 			{
 				"item_required" : {
@@ -110,13 +114,14 @@ var default_data = {
 				"type" : "ingredient",
 				"item_name" : "Cabe",
 				"level" : 1,
-				"price" : 15000,
+				"price" : 150,
 				"price_multiplier" : 1.07,
 				"unlocked" : true,
 				"effect" : EffectStatus.TAP_INCOME,
 				"effect_value" : 6,
-				"effect_multiplier" : 1.5,
-				"max_level" : 10
+				"effect_multiplier" : 2,
+				"max_level" : 10,
+				"description" : "penjualan  +%s koin"
 			},
 			{
 				"item_required" : {
@@ -127,13 +132,14 @@ var default_data = {
 				"type" : "ingredient",
 				"item_name" : "Bawang putih",
 				"level" : 1,
-				"price" : 20000,
+				"price" : 500,
 				"price_multiplier" : 1.07,
 				"unlocked" : false,
 				"effect" : EffectStatus.TAP_INCOME,
 				"effect_value" : 2,
-				"effect_multiplier" : 1.3,
-				"max_level" : 10
+				"effect_multiplier" : 2,
+				"max_level" : 10,
+				"description" : "penjualan  +%s koin"
 			}
 		],
 		"shops" : [
@@ -194,6 +200,10 @@ func _ready():
 	if not data["last_save_timestamp"] == 0:
 		calculate_passive_income()
 		SaveManager.save_data(data)
+
+func set_price_multiplier(level, max_level) -> float:
+	var exponent : float = max_level * 0.15
+	return pow(level, exponent) + level - 1
 
 
 func check_achievement(type : String) -> void:
@@ -334,8 +344,9 @@ func buy_item(item_name) -> void:
 				data['misc']['tool_upgraded'] += 1
 				check_achievement(DataManager.ON_UPGRADE_TOOL_ACHIEVEMENT)
 	
-	selected_item['effect_value'] = floor(selected_item['effect_value'] * selected_item['effect_multiplier'])
+	selected_item['effect_value'] = selected_item['effect_value'] * selected_item['effect_multiplier']
 	selected_item['level'] += 1
+	selected_item['price_multiplier'] = set_price_multiplier(selected_item['level'], selected_item['max_level'])
 	selected_item['price'] *= selected_item['price_multiplier']
 	selected_item['price'] = floor(selected_item['price'])
 	emit_signal("item_bought", DataStatus.SUCCESS, selected_item)
