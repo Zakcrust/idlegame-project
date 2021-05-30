@@ -42,6 +42,7 @@ var default_data = {
 				"type" : "tool",
 				"item_name" : "Kompor",
 				"level" : 1,
+				"base_price" : 50,
 				"price" : 50,
 				"price_multiplier" : 1.07,
 				"unlocked" : true,
@@ -60,6 +61,7 @@ var default_data = {
 				"type" : "tool",
 				"item_name" : "Wajan",
 				"level" : 1,
+				"base_price" : 150,
 				"price" : 150,
 				"price_multiplier" : 1.07,
 				"unlocked" : true,
@@ -78,6 +80,7 @@ var default_data = {
 				"type" : "tool",
 				"item_name" : "Spatula",
 				"level" : 1,
+				"base_price" : 500,
 				"price" : 500,
 				"price_multiplier" : 1.07,
 				"unlocked" : true,
@@ -96,6 +99,7 @@ var default_data = {
 				"type" : "ingredient",
 				"item_name" : "Daging Ayam",
 				"level" : 1,
+				"base_price" : 50,
 				"price" : 50,
 				"price_multiplier" : 1.07,
 				"unlocked" : true,
@@ -114,6 +118,7 @@ var default_data = {
 				"type" : "ingredient",
 				"item_name" : "Cabe",
 				"level" : 1,
+				"base_price" : 150,
 				"price" : 150,
 				"price_multiplier" : 1.07,
 				"unlocked" : true,
@@ -132,6 +137,7 @@ var default_data = {
 				"type" : "ingredient",
 				"item_name" : "Bawang putih",
 				"level" : 1,
+				"base_price" : 500,
 				"price" : 500,
 				"price_multiplier" : 1.07,
 				"unlocked" : false,
@@ -179,6 +185,33 @@ var default_data = {
 			"unlocked" : false,
 			"redeemed" : false
 		},
+		{
+			"type" : ON_UPGRADE_TOOL_ACHIEVEMENT,
+			"name" : "Sebuah Peningkatan",
+			"description" : "tingkatkan peralatan sebanyak %s kali" % 10,
+			"reward" : 50,
+			"value" : 10,
+			"unlocked" : false,
+			"redeemed" : false 
+		},
+		{
+			"type" : ON_BUY_FOOD_ACHIEVEMENT,
+			"name" : "Makanan Baru",
+			"description" : "beli %s jenis makanan" % 3,
+			"reward" : 50,
+			"value" : 3,
+			"unlocked" : false,
+			"redeemed" : false 
+		},
+		{
+			"type" : ON_UPGRADE_FOOD_ACHIEVEMENT,
+			"name" : "Kualitas Paling Utama",
+			"description" : "tingkatkan makanan sebanyak %s kali" % 10,
+			"reward" : 50,
+			"value" : 3,
+			"unlocked" : false,
+			"redeemed" : false 
+		}
 	],
 	"misc" : {
 		"total_tap_pressed" : 0,
@@ -201,9 +234,9 @@ func _ready():
 		calculate_passive_income()
 		SaveManager.save_data(data)
 
-func set_price_multiplier(level, max_level) -> float:
-	var exponent : float = max_level * 0.15
-	return pow(level, exponent) + level - 1
+func set_price_multiplier(base_price, level) -> float:
+	var exponent : float = level * 0.22
+	return pow(base_price, exponent) + level - 1
 
 
 func check_achievement(type : String) -> void:
@@ -346,7 +379,7 @@ func buy_item(item_name) -> void:
 	
 	selected_item['effect_value'] = selected_item['effect_value'] * selected_item['effect_multiplier']
 	selected_item['level'] += 1
-	selected_item['price_multiplier'] = set_price_multiplier(selected_item['level'], selected_item['max_level'])
+	selected_item['price_multiplier'] = set_price_multiplier(selected_item['base_price'], selected_item['level'])
 	selected_item['price'] *= selected_item['price_multiplier']
 	selected_item['price'] = floor(selected_item['price'])
 	emit_signal("item_bought", DataStatus.SUCCESS, selected_item)

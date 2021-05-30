@@ -89,10 +89,11 @@ func _on_Ingredient_pressed():
 
 
 func _on_Shop_pressed():
-	SoundManager.play_sfx("click")
-#	show_items("shop")
-	display_shops()
-	DataManager.can_tap = false
+	EventManager.emit_signal("show_pop_up", "Coming soon")
+#	SoundManager.play_sfx("click")
+##	show_items("shop")
+#	display_shops()
+#	DataManager.can_tap = false
 
 
 func _on_Mask_gui_input(event):

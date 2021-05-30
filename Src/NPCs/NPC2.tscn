@@ -1,0 +1,75 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Assets/Sprites/NPC/Girl1/walk_bought_1.tres" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/NPC/Girl1/walk_bought_0.tres" type="Texture" id=2]
+[ext_resource path="res://Src/NPCs/NPC1.gd" type="Script" id=3]
+[ext_resource path="res://Src/Utils/FiniteStateMachine.gd" type="Script" id=4]
+[ext_resource path="res://Src/NPCs/Types/Customer.gd" type="Script" id=5]
+[ext_resource path="res://Src/NPCs/Types/Passby.gd" type="Script" id=6]
+[ext_resource path="res://Src/NPCs/State/Move.gd" type="Script" id=7]
+[ext_resource path="res://Src/NPCs/State/Idle.gd" type="Script" id=8]
+[ext_resource path="res://Assets/Sprites/NPC/Girl1/walk_2.tres" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/NPC/Girl1/walk_1.tres" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/NPC/Girl1/walk_bought_2.tres" type="Texture" id=11]
+[ext_resource path="res://Src/NPCs/State/MoveBought.gd" type="Script" id=13]
+[ext_resource path="res://Assets/Sprites/NPC/Girl1/walk_0.tres" type="Texture" id=14]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 10 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "walk",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "walk_bought",
+"speed": 6.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 16.3653
+height = 49.4061
+
+[node name="NPC" type="Area2D" groups=[
+"NPC",
+]]
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+animation = "walk"
+frame = 1
+playing = true
+offset = Vector2( 10, -5 )
+flip_h = true
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="Role" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="Customer" type="Node" parent="Role"]
+script = ExtResource( 5 )
+
+[node name="Move" type="Node" parent="Role/Customer"]
+script = ExtResource( 7 )
+
+[node name="MoveBought" type="Node" parent="Role/Customer"]
+script = ExtResource( 13 )
+
+[node name="Idle" type="Node" parent="Role/Customer"]
+script = ExtResource( 8 )
+
+[node name="Passby" type="Node" parent="Role"]
+script = ExtResource( 6 )
+
+[node name="Move" type="Node" parent="Role/Passby"]
+script = ExtResource( 7 )
